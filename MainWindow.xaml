@@ -9,6 +9,6 @@
         Title="MainWindow" Height="350" Width="525">
    
     <Grid>
-
+        <local:ControlMenu></local:ControlMenu>
     </Grid>
 </Window>

@@ -224,6 +224,156 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ButtonStyleRight" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_right@2x.png" Height="24" Width="24"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyleflip" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_flip_v@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylefliphorizont" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_flip_h@2x.png" Height="24" Width="24"  Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylerotate_left" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_rotate_left@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylerotate_right" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_rotate_right@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylesave" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid >
+                            <Image Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
     <Grid Width="400" Height="60">
@@ -287,8 +437,41 @@
                 <ColumnDefinition Width="10*" ></ColumnDefinition>
                 <ColumnDefinition Width="10*" ></ColumnDefinition>
                 <ColumnDefinition Width="10*" ></ColumnDefinition>
-               
+                <ColumnDefinition Width="10*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
+            <Image Source="image\p_icons_area@2x.png" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="22.084" Width="121.476" Margin="0,18.458,0,19.458"/>
+
+
+            <Button Grid.Column="0" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleRight}"
+                    Margin="0,0,0,0"/>
+
+            <Button Grid.Column="1" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleflip}"
+                    Margin="0,0,0,0"/>
+
+            <Button Grid.Column="2" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylefliphorizont}"
+                    Margin="0,0,0,0"/>
+
+            <Button Grid.Column="3" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_left}"
+                    Margin="0,0,0,0"/>
+
+            <Button Grid.Column="4" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_right}"
+                    Margin="0,0,0,0"/>
+
+            <Button Grid.Column="5" 
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylesave}"
+                    Margin="0,23,19.333,23"/>
         </Grid>
 
     </Grid>
