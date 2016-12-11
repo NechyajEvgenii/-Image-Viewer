@@ -10,21 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Image_Viewer
 {
     /// <summary>
-    /// Логика взаимодействия для ControlMenu.xaml
+    /// Логика взаимодействия для WindowMenu.xaml
     /// </summary>
-    public partial class ControlMenu : UserControl
+    public partial class WindowMenu : Window
     {
-        public ControlMenu()
+        public WindowMenu()
         {
             InitializeComponent();
         }
 
-    }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+    }
 }

@@ -23,6 +23,10 @@ namespace Image_Viewer
         public MainWindow()
         {
             InitializeComponent();
+            new WindowMenu().Show();
         }
+
+
+       
     }
 }
