@@ -5,9 +5,69 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Image_Viewer"
              mc:Ignorable="d" >
+
+    <UserControl.Resources>
+        <Style x:Key="BigText" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"> </Setter>
+            <Setter Property="FontSize" Value="26"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style x:Key="SmallTextWhite" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style x:Key="SmallTextGray" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="Foreground" Value="Gray"></Setter>
+
+        </Style>
+    </UserControl.Resources>
+
+
     <Grid>
-        <TextBlock x:Name="TextExtension" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>
-        <!--<TextBlock x:Name="TextExtension" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>-->
-        <TextBlock x:Name="TextLength" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" MaxHeight="15"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="80*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid VerticalAlignment="Top"  Grid.Row="1">
+        <Grid.RowDefinitions>
+            
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+          
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TextFormat"  Grid.Row="0" 
+                  Style="{StaticResource BigText}" >JPG</TextBlock>
+        <TextBlock x:Name="TextImageExtension"  Grid.Row="1" 
+                   Style="{StaticResource BigText}"> 1920</TextBlock>
+        <TextBlock x:Name="TextImageSize"  Grid.Row="2"
+                   Style="{StaticResource BigText}">451</TextBlock>
+        </Grid>
+
+        <Grid  VerticalAlignment="Top" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="TextName" Grid.Row="0" Style="{StaticResource SmallTextWhite}" >name</TextBlock>
+            <TextBlock x:Name="TextPath" Grid.Row="1" Style="{StaticResource SmallTextGray}">Path</TextBlock>
+            <TextBlock x:Name="TextDate" Grid.Row="2" Style="{StaticResource SmallTextWhite}">Date</TextBlock>
+            <TextBlock x:Name="TextTime" Grid.Row="3" Style="{StaticResource SmallTextGray}">time</TextBlock>
+        </Grid>
+
+
     </Grid>
 </UserControl>

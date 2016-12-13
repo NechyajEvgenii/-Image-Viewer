@@ -1,6 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using Goheer.EXIF;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Image_Viewer
 {
     /// <summary>
@@ -42,6 +43,20 @@ namespace Image_Viewer
                 var massImage = Directory.GetFiles(str, "*.*", SearchOption.TopDirectoryOnly)
                      .Where(s => s.EndsWith(".jpg") || s.EndsWith(".bmp") || s.EndsWith(".png"));
 
+                //Bitmap bmp = new Bitmap(openfile.FileName);
+
+
+                //EXIFextractor exit = new EXIFextractor(ref bmp,"\n");
+
+                //foreach (System.Web.UI.Pair s in exit)
+                //{
+                //   MessageBox.Show(s.First + " : " + s.Second + "\n");
+                //}
+
+                //try { MessageBox.Show(exit["Cell Width"].ToString()); } catch( Exception ex) { MessageBox.Show(ex.Message); }
+
+                //try { MessageBox.Show(exit["Image Width"].ToString()); } catch (Exception ex) { MessageBox.Show(ex.Message); }
+
 
                 //BitmapDecoder decoder = BitmapDecoder.Create(new Uri(openfile.FileName), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default); //"распаковали" снимок и создали объект decoder
                 //BitmapMetadata TmpImgEXIF = (BitmapMetadata)decoder.Frames[0].Metadata;
@@ -56,14 +71,13 @@ namespace Image_Viewer
 
                 foreach (var item in massImage)
                 {
-
                     var im = new Border()
                     {
                         Width = 130,
                         Height = 100,
                         BorderThickness = new Thickness(0, 0, 0, 0),
-                        BorderBrush = (Brush)new BrushConverter().ConvertFromString("#dadada"),
-                        Child = new Image()
+                        BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
+                        Child = new System.Windows.Controls.Image()
                         {
                             Width = 120,
                             Height = 70,

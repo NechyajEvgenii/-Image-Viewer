@@ -23,8 +23,8 @@
         <Button Grid.Column="0" MouseEnter="Border_MouseEnter" Width="10" Grid.ColumnSpan="2" Opacity="0" HorizontalAlignment="Left"/>
 
         <Border x:Name="Border" Width="0"  Background="Azure" MouseLeave="Border_MouseLeave" Grid.ColumnSpan="2" Margin="0,0,56.364,0"></Border>
-        <local:ControlImageLibrary Grid.ColumnSpan="3" VerticalAlignment="Stretch" Width="400" HorizontalAlignment="Left" />
+        <local:ControlImageLibrary Grid.ColumnSpan="3" VerticalAlignment="Stretch" Width="205" HorizontalAlignment="Left" />
         <Image Grid.ColumnSpan="3" Margin="0,0,0,0" ></Image>
-
+        <local:ControlFileProperties HorizontalAlignment="Right" Grid.Column="2" Width="122.833"> </local:ControlFileProperties>
     </Grid>
 </Window>
