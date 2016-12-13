@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
              xmlns:local="clr-namespace:Image_Viewer"
              mc:Ignorable="d" >
     <UserControl.Resources>
@@ -37,13 +38,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid HorizontalAlignment="Center" Height="8" VerticalAlignment="Top" Width="8">
-                            <Image Source="image\ico_pin_on@2x.png"></Image>
+                            <Image Name="immax" Source="image\ico_pin_on@2x.png"></Image>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <!--<Setter Property="Opacity" TargetName="immax" Value="1"></Setter>-->
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -62,18 +62,20 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid  >
-                            <Image Source="image/p_slideshow@2x.png" Opacity="0.3" Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image  Name="immax" Source="image/p_slideshow@2x.png" Opacity="0.3"  Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
         <Style x:Key="ButtonStylepMaximize" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -87,13 +89,15 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_maximize@2x.png" Height="25" Width="25" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image x:Name="immax" Source="image/p_maximize@2x.png"  Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
+
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -112,13 +116,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
-                            <Image Source="image/p_zoom_2@2x.png" Height="25" Width="25" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image Name="immax"  Source="image/p_zoom_2@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -137,13 +140,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
-                            <Image Source="image/p_zoom_1@2x.png" Height="25" Width="25" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Name="immax"  Source="image/p_zoom_1@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -162,13 +164,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
-                            <Image Source="image/p_zoom_in@2x.png" Height="25" Width="25" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Name="immax"  Source="image/p_zoom_in@2x.png" Height="25" Width="25"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -187,13 +188,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
-                            <Image Source="image/p_zoom_out@2x.png" Height="25" Width="25" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Name="immax"  Source="image/p_zoom_out@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -212,13 +212,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_left@2x.png" Height="24" Width="24"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_left@2x.png" Height="24" Width="24"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <!--<Setter Property="Opacity" TargetName="immax" Value="1"></Setter>-->
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -237,13 +236,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_right@2x.png" Height="24" Width="24"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_right@2x.png" Height="24" Width="24"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <!--<Setter Property="Opacity" TargetName="immax" Value="1"></Setter>-->
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -262,13 +260,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_flip_v@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_flip_v@2x.png" Height="24" Width="24"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -287,13 +284,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_flip_h@2x.png" Height="24" Width="24"  Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_flip_h@2x.png" Height="24" Width="24" Opacity="0.3"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -312,13 +308,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_rotate_left@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_rotate_left@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -337,13 +332,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_rotate_right@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_rotate_right@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="immax" Value="1"></Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -362,18 +356,106 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true"/>
-                            <Trigger Property="IsMouseOver" Value="true"/>
-                            <Trigger Property="IsPressed" Value="true"/>
-                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <!--<Setter Property="Opacity" TargetName="immax" Value="1"></Setter>-->
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <Style x:Key="CheckBoxAutoSave" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid x:Name="markGrid">
+                                    <Image x:Name="optionMark"  Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="0"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                                    <Image x:Name="indeterminateMark"  Source="image/p_autosave_off@2x.png" Height="24" Width="24" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--<Style x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <ed:Callout Name="Border"
+                                Width="50"
+                                Height="20"
+                                MinWidth="100"
+                                    Background="Aquamarine"
+                                MinHeight="30"
+                                Margin="0,0,0,50"
+                                AnchorPoint="0,1.5"
+                                BorderThickness="1"
+                                CalloutStyle="RoundedRectangle"
+                                Fill="#FFF4F4F5"
+                                FontSize="14.667"
+                                Stroke="Black">
+                            <ContentPresenter Margin="4"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top" />
+                        </ed:Callout>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
+
     </UserControl.Resources>
 
     <Grid Width="400" Height="60">
@@ -400,24 +482,25 @@
             <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="22.084" Width="121.476" Margin="0,18.458,0,19.458"/>
             <Button Content="Button"   VerticalAlignment="Center"  HorizontalAlignment="Right" Style="{DynamicResource ButtonStylePin}" Margin="0,15.333,2.25,18.5" Height="10" Width="10" />
             <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,15.333,2.25,18.5" Width="22.75" Height="26.167" Grid.Column="1"  />
+
             <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"  ToolTip="Aspect to fill" />
 
             <Button Grid.Column="3" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleMinimize}" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleMinimize}" ToolTip="Fit" />
 
             <Button Grid.Column="4" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoom1:1}" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoom1:1}" ToolTip="Original size"/>
             <Button Grid.Column="5" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleOut}" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleOut}" ToolTip="Zoom out"/>
 
             <Button Grid.Column="6" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoomP}" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoomP}" ToolTip="Zoom in"/>
 
             <Button Grid.Column="7" 
                     Width="14" Height="14" 
@@ -451,27 +534,29 @@
             <Button Grid.Column="1" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleflip}"
-                    Margin="0,0,0,0"/>
+                    Margin="0,0,0,0" ToolTip="Flip vertically"/>
 
             <Button Grid.Column="2" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylefliphorizont}"
-                    Margin="0,0,0,0"/>
+                    Margin="0,0,0,0" ToolTip="Flip horizontally"/>
 
             <Button Grid.Column="3" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_left}"
-                    Margin="0,0,0,0"/>
+                    Margin="0,0,0,0" ToolTip="Rotate left"/>
 
             <Button Grid.Column="4" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_right}"
-                    Margin="0,0,0,0"/>
+                    Margin="0,0,0,0" ToolTip="Rotate right"/>
 
-            <Button Grid.Column="5" 
-                    Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylesave}"
-                    Margin="0,23,19.333,23"/>
+            <CheckBox Grid.Column="5" Style="{DynamicResource CheckBoxAutoSave}"
+                      Margin="0,23,13.071,23"
+                      Width="20.262" Height="14" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                      ToolTip="Autosave"  />
+
         </Grid>
 
     </Grid>

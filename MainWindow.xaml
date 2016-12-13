@@ -14,17 +14,18 @@
     </Window.Background>
     <Grid  >
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="28*"></ColumnDefinition>
-            <ColumnDefinition Width="339*"/>
         </Grid.ColumnDefinitions>
 
 
-        <Button Grid.Column="0" MouseEnter="Border_MouseEnter" Width="10" Grid.ColumnSpan="2" Opacity="0" HorizontalAlignment="Left"/>
-
-        <Border x:Name="Border" Width="0"  Background="Azure" MouseLeave="Border_MouseLeave" Grid.ColumnSpan="2" Margin="0,0,56.364,0"></Border>
-        <local:ControlImageLibrary Grid.ColumnSpan="3" VerticalAlignment="Stretch" Width="205" HorizontalAlignment="Left" />
-        <Image Grid.ColumnSpan="3" Margin="0,0,0,0" ></Image>
-        <local:ControlFileProperties HorizontalAlignment="Right" Grid.Column="2" Width="122.833"> </local:ControlFileProperties>
+        <Border Grid.Column="0" MouseEnter="Border_MouseEnter" Width="2" Opacity="0.1"  HorizontalAlignment="Left" Background="Black"/>
+     
+        <local:ControlImageLibrary x:Name="Library" Grid.ColumnSpan="3" MouseLeave="Border_MouseLeave" VerticalAlignment="Stretch" Width="0" HorizontalAlignment="Left" />
+        <!--<Image Grid.ColumnSpan="3" Margin="0,0,0,0" ></Image>-->
+        <!--<local:ControlFileProperties  x:Name="ImageInf" HorizontalAlignment="Right" Grid.Column="2" Width="200.833"> </local:ControlFileProperties>-->
+   
+       <local:ControlMenu Grid.Column="1"></local:ControlMenu>
     </Grid>
 </Window>

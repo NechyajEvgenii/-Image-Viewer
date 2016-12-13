@@ -29,12 +29,12 @@ namespace Image_Viewer
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            //Border.Width = 200;
+            Library.Width = 252;
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            //Border.Width = 0;
+            Library.Width = 0;
         }
     }
 }

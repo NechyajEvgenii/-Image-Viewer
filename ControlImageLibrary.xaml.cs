@@ -73,14 +73,14 @@ namespace Image_Viewer
                 {
                     var im = new Border()
                     {
-                        Width = 130,
-                        Height = 100,
+                        Width = 55,
+                        Height = 40,
                         BorderThickness = new Thickness(0, 0, 0, 0),
                         BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
                         Child = new System.Windows.Controls.Image()
                         {
-                            Width = 120,
-                            Height = 70,
+                            Width = 50,
+                            Height = 30,
                             Stretch = Stretch.Fill,
                             HorizontalAlignment = HorizontalAlignment.Center,
                             VerticalAlignment = VerticalAlignment.Center,
@@ -98,7 +98,7 @@ namespace Image_Viewer
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as Border).BorderThickness = new Thickness(2, 2, 2, 2);
+            (sender as Border).BorderThickness = new Thickness(1, 1, 1, 1);
         }
 
         private void Image_MouseLeave(object sender, MouseEventArgs e)
