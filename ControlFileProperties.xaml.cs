@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,24 +16,13 @@ using System.Windows.Shapes;
 namespace Image_Viewer
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ControlFileProperties.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ControlFileProperties : UserControl
     {
-        public MainWindow()
+        public ControlFileProperties()
         {
             InitializeComponent();
-       
-        }
-
-        private void Border_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //Border.Width = 200;
-        }
-
-        private void Border_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //Border.Width = 0;
         }
     }
 }

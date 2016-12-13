@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Image_Viewer.ControlFileProperties"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Image_Viewer"
+             mc:Ignorable="d" >
+    <Grid>
+        <TextBlock x:Name="TextExtension" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>
+        <!--<TextBlock x:Name="TextExtension" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>-->
+        <TextBlock x:Name="TextLength" VerticalAlignment="Top" HorizontalAlignment="Stretch"></TextBlock>
+    </Grid>
+</UserControl>
