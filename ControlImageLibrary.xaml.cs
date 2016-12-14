@@ -37,11 +37,11 @@ namespace Image_Viewer
             if (openfile.ShowDialog() == true)
             {
                 string str = openfile.FileName;
+            
+                this.Win.ImageMainS.Source=new BitmapImage(new Uri(str));
+
                 str = str.Remove(str.LastIndexOf("\\"));
-
-
-                var massImage = Directory.GetFiles(str, "*.*", SearchOption.TopDirectoryOnly)
-                     .Where(s => s.EndsWith(".jpg") || s.EndsWith(".bmp") || s.EndsWith(".png"));
+                CreatImageLibrary(str);
 
                 //Bitmap bmp = new Bitmap(openfile.FileName);
 
@@ -69,6 +69,41 @@ namespace Image_Viewer
 
 
 
+
+
+                //  MessageBox.Show((massImage.Count).ToString());
+
+            }
+        }
+
+
+       
+
+
+        private void Image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            (sender as Border).BorderThickness = new Thickness(1, 1, 1, 1);
+        }
+
+        private void Image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            (sender as Border).BorderThickness = new Thickness(0, 0, 0, 0);
+        }
+
+
+        public void CreatImageLibrary(string str)
+        {
+            try
+            {
+                var massImage = Directory.GetFiles(str, "*.*", SearchOption.TopDirectoryOnly)
+                        .Where(s => s.EndsWith(".jpg")
+                        || s.EndsWith(".bmp")
+                        || s.EndsWith(".png")
+                        || s.EndsWith(".JPG")
+                        );
+
+                WrapPan.Children.Clear();
+
                 foreach (var item in massImage)
                 {
                     var im = new Border()
@@ -90,20 +125,12 @@ namespace Image_Viewer
                     WrapPan.Children.Add(im);
 
                 }
-
-                //  MessageBox.Show((massImage.Count).ToString());
-
             }
+            catch { }
         }
 
-        private void Image_MouseEnter(object sender, MouseEventArgs e)
-        {
-            (sender as Border).BorderThickness = new Thickness(1, 1, 1, 1);
-        }
 
-        private void Image_MouseLeave(object sender, MouseEventArgs e)
-        {
-            (sender as Border).BorderThickness = new Thickness(0, 0, 0, 0);
-        }
+        public MainWindow Win { get; set; }
+
     }
 }

@@ -24,17 +24,50 @@ namespace Image_Viewer
         public MainWindow()
         {
             InitializeComponent();
-       
+            LibraryImages.Win = this;
+
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            Library.Width = 252;
+            LibraryImages.Width = 252;
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            Library.Width = 0;
+            LibraryImages.Width = 0;
+        }
+
+        public Image ImageMainS { get { return ImageMain; } set { ImageMain = value; } }
+
+
+
+
+        private void Border_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("sdf");
+        }
+
+        private void ImageMain_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                try
+                {
+                    ImageMain.Source = new BitmapImage(new Uri(files[0]));
+
+                    LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")) );
+
+                }
+                catch 
+                {
+                    LibraryImages.CreatImageLibrary(files[0]);
+                }
+
+            }
+
         }
     }
 }

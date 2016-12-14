@@ -18,14 +18,18 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Image x:Name="ImageMain" Grid.ColumnSpan="3" AllowDrop="True"  Drop="ImageMain_Drop" Source="image\FontDrag.jpg"></Image>
 
 
-        <Border Grid.Column="0" MouseEnter="Border_MouseEnter" Width="2" Opacity="0.1"  HorizontalAlignment="Left" Background="Black"/>
+        <Border Grid.Column="0" MouseEnter="Border_MouseEnter" Width="5" Opacity="0.1"  HorizontalAlignment="Left" Background="Black"/>
      
-        <local:ControlImageLibrary x:Name="Library" Grid.ColumnSpan="3" MouseLeave="Border_MouseLeave" VerticalAlignment="Stretch" Width="0" HorizontalAlignment="Left" />
+        <local:ControlImageLibrary x:Name="LibraryImages" Grid.ColumnSpan="3" MouseLeave="Border_MouseLeave" VerticalAlignment="Stretch" Width="0" HorizontalAlignment="Left" />
+        <Border Grid.ColumnSpan="3" Height="10" VerticalAlignment="Bottom"  MouseEnter="Border_MouseEnter_1"/>
+      
+       
         <!--<Image Grid.ColumnSpan="3" Margin="0,0,0,0" ></Image>-->
         <!--<local:ControlFileProperties  x:Name="ImageInf" HorizontalAlignment="Right" Grid.Column="2" Width="200.833"> </local:ControlFileProperties>-->
    
-       <local:ControlMenu Grid.Column="1"></local:ControlMenu>
+       <!--<local:ControlMenu Grid.Column="1"></local:ControlMenu>-->
     </Grid>
 </Window>
