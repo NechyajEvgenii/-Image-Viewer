@@ -38,7 +38,12 @@ namespace Image_Viewer
             {
                 string str = openfile.FileName;
 
-                this.Win.ImageMainS.Source = new BitmapImage(new Uri(str));
+                var b= new BitmapImage(new Uri(str));
+                this.Win.ImageMainS.Source = b;
+
+                Win.OriginalHeight=b.Height;
+                Win.OriginalWidth=b.Width;
+
                 Win.CreateInfor(str);
                 str = str.Remove(str.LastIndexOf("\\"));
                 CreatImageLibrary(str);

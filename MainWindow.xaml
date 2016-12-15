@@ -7,7 +7,7 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
-        x:Name="Window">
+        x:Name="window">
     <Window.Resources>
     </Window.Resources>
     <Window.Background>
@@ -37,8 +37,8 @@
                 <Image x:Name="ImageMain" Grid.ColumnSpan="5"  AllowDrop="True" MouseEnter="ImageMain_MouseEnter"  
                        Drop="ImageMain_Drop" Source="image\FontDrag.jpg" 
                        RenderTransformOrigin="0.5,0.5"
-                       Width="{Binding ElementName=Window, Path=Width}"
-                    Height="{Binding ElementName=Window, Path=Height}"
+                       Width="{Binding ElementName=window, Path=Width}"
+                       Height="{Binding ElementName=window, Path=Height}"
                     >
                     <Image.RenderTransform>
                         <TransformGroup>

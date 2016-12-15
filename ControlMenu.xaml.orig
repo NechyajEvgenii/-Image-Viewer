@@ -37,8 +37,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid HorizontalAlignment="Center" Height="12" VerticalAlignment="Top" Width="12">
+<<<<<<< HEAD
+                        <Grid HorizontalAlignment="Center" Height="8" VerticalAlignment="Top" Width="8">
                             <Image Name="immax" Source="image\ico_pin_on@2x.png"></Image>
+=======
+                        <Grid HorizontalAlignment="Center" Height="12" VerticalAlignment="Top" Width="12">
+                            <Image Source="image\ico_pin_on@2x.png"></Image>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -62,7 +67,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid  >
-                            <Image  Name="immax" Source="image/p_slideshow@2x.png" Opacity="0.3"  Height="45" Width="45" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+<<<<<<< HEAD
+                            <Image  Name="immax" Source="image/p_slideshow@2x.png" Opacity="0.3"  Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+=======
+                            <Image Source="image/p_slideshow@2x.png" Opacity="0.3" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -89,7 +98,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image x:Name="immax" Source="image/p_maximize@2x.png"  Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+<<<<<<< HEAD
+                            <Image x:Name="immax" Source="image/p_maximize@2x.png"  Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+=======
+                            <Image Source="image/p_maximize@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
 
@@ -103,8 +116,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
         <Style x:Key="ButtonStyleMinimize" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -117,8 +128,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
+<<<<<<< HEAD
+                        <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
+                            <Image Name="immax"  Source="image/p_zoom_2@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+=======
                         <Grid >
-                            <Image Name="immax"  Source="image/p_zoom_2@2x.png" Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <Image Source="image/p_zoom_2@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -129,8 +145,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
         <Style x:Key="ButtonStyleZoom1:1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -143,8 +157,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid  >
-                            <Image Name="immax"  Source="image/p_zoom_1@2x.png" Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+<<<<<<< HEAD
+                        <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
+                            <Image Name="immax"  Source="image/p_zoom_1@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+=======
+                        <Grid >
+                            <Image Source="image/p_zoom_1@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -167,8 +186,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
+<<<<<<< HEAD
+                        <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
+                            <Image Name="immax"  Source="image/p_zoom_in@2x.png" Height="25" Width="25"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+=======
                         <Grid >
-                            <Image Name="immax"  Source="image/p_zoom_in@2x.png" Height="35" Width="35"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Source="image/p_zoom_in@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -191,8 +215,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
-                            <Image Name="immax"  Source="image/p_zoom_out@2x.png" Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+<<<<<<< HEAD
+                        <Grid HorizontalAlignment="Left" Height="14" VerticalAlignment="Top" Width="14">
+                            <Image Name="immax"  Source="image/p_zoom_out@2x.png" Height="25" Width="25" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+=======
+                        <Grid >
+                            <Image Source="image/p_zoom_out@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -216,7 +245,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_left@2x.png" Height="35" Width="35"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+                            <Image Name="immax"  Source="image/p_left@2x.png" Height="24" Width="24"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -227,11 +256,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-
-
-
         <Style x:Key="ButtonStyleRight" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -245,7 +269,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_right@2x.png" Height="35" Width="35"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Name="immax"  Source="image/p_right@2x.png" Height="24" Width="24"  Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -269,7 +293,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_flip_v@2x.png" Height="35" Width="35"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+<<<<<<< HEAD
+                            <Image Name="immax"  Source="image/p_flip_v@2x.png" Height="24" Width="24"  Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+=======
+                            <Image Source="image/p_flip_v@2x.png" Height="30" Width="30" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -293,7 +321,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_flip_h@2x.png" Height="35" Width="35" Opacity="0.3"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+<<<<<<< HEAD
+                            <Image Name="immax"  Source="image/p_flip_h@2x.png" Height="24" Width="24" Opacity="0.3"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+=======
+                            <Image Source="image/p_flip_h@2x.png" Height="30" Width="30"  Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -317,7 +349,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_rotate_left@2x.png" Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+<<<<<<< HEAD
+                            <Image Name="immax"  Source="image/p_rotate_left@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+=======
+                            <Image Source="image/p_rotate_left@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -341,7 +377,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_rotate_right@2x.png" Height="35" Width="35" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+<<<<<<< HEAD
+                            <Image Name="immax"  Source="image/p_rotate_right@2x.png" Height="24" Width="24" Opacity="0.3"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+=======
+                            <Image Source="image/p_rotate_right@2x.png" Height="30" Width="30" Opacity="0.3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -365,7 +405,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid >
-                            <Image Name="immax"  Source="image/p_autosave_on@2x.png" Height="35" Width="35" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+<<<<<<< HEAD
+                            <Image Name="immax"  Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+=======
+                            <Image Source="image/p_autosave_on@2x.png" Height="30" Width="30" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+>>>>>>> f1
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -413,8 +457,8 @@
                             </Grid.ColumnDefinitions>
                             <Border x:Name="checkBoxBorder"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid x:Name="markGrid">
-                                    <Image x:Name="optionMark"  Source="image/p_autosave_on@2x.png" Height="35" Width="35" Opacity="0"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
-                                    <Image x:Name="indeterminateMark"  Source="image/p_autosave_off@2x.png" Height="35" Width="35" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-5.5"/>
+                                    <Image x:Name="optionMark"  Source="image/p_autosave_on@2x.png" Height="24" Width="24" Opacity="0"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
+                                    <Image x:Name="indeterminateMark"  Source="image/p_autosave_off@2x.png" Height="24" Width="24" Opacity="1"   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-5.5"/>
                                 </Grid>
                             </Border>
                             <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -467,67 +511,82 @@
 
     </UserControl.Resources>
 
-    <Grid Width="579" Height="79">
+    <Grid Width="500" Height="80">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition ></ColumnDefinition>
-            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Source="image\navi.png" Grid.ColumnSpan="2"/>
+        <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Source="image\navi.png" Grid.ColumnSpan="2" Margin="0,7.871"/>
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="32*" ></ColumnDefinition>
-                <ColumnDefinition Width="34*" ></ColumnDefinition>
-                <ColumnDefinition Width="36*" ></ColumnDefinition>
-                <ColumnDefinition Width="36*" ></ColumnDefinition>
-                <ColumnDefinition Width="36*" ></ColumnDefinition>
-                <ColumnDefinition Width="36*" ></ColumnDefinition>
-                <ColumnDefinition Width="37*" ></ColumnDefinition>
+                <ColumnDefinition Width="24*" ></ColumnDefinition>
+                <ColumnDefinition Width="29*" ></ColumnDefinition>
                 <ColumnDefinition Width="41*" ></ColumnDefinition>
+                <ColumnDefinition Width="31*" ></ColumnDefinition>
+                <ColumnDefinition Width="31*" ></ColumnDefinition>
+                <ColumnDefinition Width="31*" ></ColumnDefinition>
+                <ColumnDefinition Width="31*" ></ColumnDefinition>
+                <ColumnDefinition Width="31*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
 
-            <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30.104" Width="178.187" Margin="1.881,22,1.874,26.896"/>
-            <Button Content="Button" Margin="0,31,0,36"   VerticalAlignment="Center"  HorizontalAlignment="Right" Style="{DynamicResource ButtonStylePin}"  Height="12" Width="12" />
-            <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="2.088,22,2.089,27"  Width="30" Height="30" Grid.Column="1"  />
+<<<<<<< HEAD
+            <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="22.084" Width="121.476" Margin="0,18.458,0,19.458"/>
+            <Button Content="Button"   VerticalAlignment="Center"  HorizontalAlignment="Right" Style="{DynamicResource ButtonStylePin}" Margin="0,15.333,2.25,18.5" Height="10" Width="10" />
+            <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,15.333,2.25,18.5" Width="22.75" Height="26.167" Grid.Column="1"  />
 
             <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  
-                    Width="20" Height="20" 
-                    HorizontalAlignment="Right" VerticalAlignment="Center"  
-                    ToolTip="Aspect to fill" Click="AspectToFillClick" Margin="0,29.5" />
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"  ToolTip="Aspect to fill" />
 
             <Button Grid.Column="3" 
-                    Width="20" Height="20" 
-                    Margin="12.597,29.5,3.591,29.5"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Style="{DynamicResource ButtonStyleMinimize}" 
-                    ToolTip="Fit"  Click="FitClick"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleMinimize}" ToolTip="Fit" />
 
             <Button Grid.Column="4" 
-                    Width="20" Height="20" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Style="{DynamicResource ButtonStyleZoom1:1}" 
-                    ToolTip="Original size"
-                    Click="OriginalSizeClick" Margin="8.092,29.5,8.095,29.5"
-                    />
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoom1:1}" ToolTip="Original size"/>
             <Button Grid.Column="5" 
-                    Width="20" Height="20" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Margin="3.596,29.5,12.592,29.5"
-                    Style="{DynamicResource ButtonStyleOut}" 
-                    ToolTip="Zoom out"  Click="ZoomOutClick"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleOut}" ToolTip="Zoom out"/>
 
             <Button Grid.Column="6" 
-                    Width="20" Height="20" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center" 
-                    Style="{DynamicResource ButtonStyleZoomP}" 
-                    ToolTip="Zoom in" Click="ZoomInClick" Margin="0,29.5"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoomP}" ToolTip="Zoom in"/>
+=======
+
+            <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="27.084" Width="165.663" Margin="0,23.458,0,29.458"/>
+            <Button Content="Button"   VerticalAlignment="Center"   HorizontalAlignment="Right" Style="{DynamicResource ButtonStylePin}"  
+                    Height="12" Width="12" 
+                    Margin="0,0,0,6"/>
+            <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,25.333,2.25,28.5" Width="22.75" Height="26.167" Grid.Column="1"  />
+            <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  
+                    Width="19" Height="19" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"  />
+
+            <Button Grid.Column="3" 
+                    Width="19" Height="19" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleMinimize}" 
+                  Margin="0,0,0,0"  />
+
+            <Button Grid.Column="4" 
+                    Width="19" Height="19" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoom1:1}" Margin="0,0,0,0" />
+            <Button Grid.Column="5" 
+                    Width="19" Height="19" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleOut}" Margin="0,0,0,0" />
+
+            <Button Grid.Column="6" 
+                    Width="19" Height="19" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoomP}" Margin="0,0,10,0" />
+>>>>>>> f1
 
             <Button Grid.Column="7" 
-                    Width="25" Height="25" 
-                    HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleLeft}"
-                    Margin="0,27,4,27"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleLeft}"
+                    />
 
 
         </Grid>
@@ -537,50 +596,69 @@
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="41*" ></ColumnDefinition>
-                <ColumnDefinition Width="45*" ></ColumnDefinition>
-                <ColumnDefinition Width="45*" ></ColumnDefinition>
-                <ColumnDefinition Width="45*" ></ColumnDefinition>
-                <ColumnDefinition Width="45*" ></ColumnDefinition>
-                <ColumnDefinition Width="59*" ></ColumnDefinition>
+                <ColumnDefinition Width="31" ></ColumnDefinition>
+                <ColumnDefinition Width="43*" ></ColumnDefinition>
+                <ColumnDefinition Width="43*" ></ColumnDefinition>
+                <ColumnDefinition Width="43*" ></ColumnDefinition>
+                <ColumnDefinition Width="43*" ></ColumnDefinition>
+                <ColumnDefinition Width="49*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Source="image\p_icons_area@2x.png" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30.104" Width="185.941" Margin="0,22,0.166,26.896"/>
+            <Image Source="image\p_icons_area@2x.png" Grid.ColumnSpan="4" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="27.084" Width="165.833" Margin="1.823,23.458,2.787,29.458" Grid.Column="1"/>
 
 
             <Button Grid.Column="0" 
-                     Width="30" Height="30" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleRight}"
-                    Margin="2.028,24.5,0,24.5"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleRight}" Margin="8.5,33"
+                    />
 
             <Button Grid.Column="1" 
-                    Width="20" Height="20" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Style="{DynamicResource ButtonStyleflip}"
-                    Margin="10.032,29.5,10.037,29.5" ToolTip="Flip vertically" Click="FlipVerticallyClick"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleflip}"
+<<<<<<< HEAD
+                    Margin="0,0,0,0" ToolTip="Flip vertically"/>
+=======
+                 Margin="0,0,0,4"/>
+>>>>>>> f1
 
             <Button Grid.Column="2" 
-                    Width="24.539" Height="20" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Style="{DynamicResource ButtonStylefliphorizont}"
-                    Margin="10,29.5" ToolTip="Flip horizontally"  Click="FlipHorizontallyClick"/>
+                    Width="14" Height="14" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylefliphorizont}"
+<<<<<<< HEAD
+                    Margin="0,0,0,0" ToolTip="Flip horizontally"/>
+=======
+                   Margin="13.81,31,13.81,35"/>
+>>>>>>> f1
 
             <Button Grid.Column="3" 
-                    Width="26.542" Height="25" 
+                    Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_left}"
-                    Margin="11.541,27,10,27" ToolTip="Rotate left" Click="ClickTrnsformImageLeft"/>
+<<<<<<< HEAD
+                    Margin="0,0,0,0" ToolTip="Rotate left"/>
+=======
+                    Margin="13.81,31,13.81,35"/>
+>>>>>>> f1
 
             <Button Grid.Column="4" 
-                    Width="18.53" Height="20" 
+                    Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_right}"
-                    Margin="10,29.5,8.534,29.5" ToolTip="Rotate right"  Click="ClickTrnsformImageRight" />
+<<<<<<< HEAD
+                    Margin="0,0,0,0" ToolTip="Rotate right"/>
 
             <CheckBox Grid.Column="5" Style="{DynamicResource CheckBoxAutoSave}"
-                     Margin="0,0,10,0"
-                      Width="30" Height="27.5" 
+                      Margin="0,23,13.071,23"
+                      Width="20.262" Height="14" 
                       HorizontalAlignment="Center" VerticalAlignment="Center"
                       ToolTip="Autosave"  />
 
+=======
+                    Margin="13.809,31,13.81,35"/>
+
+            <Button Grid.Column="5" 
+                    Width="23" Height="21.333" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylesave}"
+                   Margin="4.209,29.209,21.348,29.458"/>
+>>>>>>> f1
         </Grid>
 
     </Grid>

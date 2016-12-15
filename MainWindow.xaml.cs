@@ -46,8 +46,8 @@ namespace Image_Viewer
         }
 
 
-        double originalHeight;
-        double originalWidth;
+        public double OriginalHeight { get; set; }
+        public double OriginalWidth { get; set; }
 
 
         private void Border_MouseEnter_1(object sender, MouseEventArgs e)
@@ -62,10 +62,14 @@ namespace Image_Viewer
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 try
                 {
-                    ImageMain.Source = new BitmapImage(new Uri(files[0]));
+
+                    var b= new BitmapImage(new Uri(files[0]));
+                    ImageMain.Source = b;
+                    OriginalHeight = b.Height;
+                    OriginalWidth = b.Width;
                     CreateInfor(files[0]);
                     LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")));
-
+                   
                 }
                 catch
                 {
@@ -154,23 +158,29 @@ namespace Image_Viewer
 
         public void ZoomOut()
         {
-            Scrol.ScrollToHorizontalOffset(Window.Width / 2);
-            Scrol.ScrollToVerticalOffset(Window.Height / 2);
-            ScaleTr.CenterX = Window.Width / 2;
-            ScaleTr.CenterY = Window.Height / 2;
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
             ScaleTr.ScaleX -= 0.1;
             ScaleTr.ScaleY -= 0.1;
         }
 
         public void ZoomIn()
         {
-            Scrol.ScrollToHorizontalOffset(Window.Width / 2);
-            Scrol.ScrollToVerticalOffset(Window.Height / 2);
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
 
-            ScaleTr.CenterX = Window.Width / 2;
-            ScaleTr.CenterY = Window.Height / 2;
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
             ScaleTr.ScaleX += 0.1;
             ScaleTr.ScaleY += 0.1;
+        }
+
+        public void OriginalSize()
+        {
+            ImageMain.Width = OriginalWidth;
+            ImageMain.Height = OriginalHeight;
         }
 
 

@@ -27,10 +27,7 @@ namespace Image_Viewer
 
         public MainWindow Win { get; set; }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("sdf");
-        }
+       
 
         private void ClickTrnsformImageLeft(object sender, RoutedEventArgs e)
         {
@@ -70,6 +67,11 @@ namespace Image_Viewer
         private void FitClick(object sender, RoutedEventArgs e)
         {
             Win.Fit();
+        }
+
+        private void OriginalSizeClick(object sender, RoutedEventArgs e)
+        {
+            Win.OriginalSize();
         }
     }
 }
