@@ -37,52 +37,28 @@ namespace Image_Viewer
             if (openfile.ShowDialog() == true)
             {
                 string str = openfile.FileName;
-            
-                this.Win.ImageMainS.Source=new BitmapImage(new Uri(str));
 
+                this.Win.ImageMainS.Source = new BitmapImage(new Uri(str));
+                Win.CreateInfor(str);
                 str = str.Remove(str.LastIndexOf("\\"));
                 CreatImageLibrary(str);
 
-                //Bitmap bmp = new Bitmap(openfile.FileName);
 
-
-                //EXIFextractor exit = new EXIFextractor(ref bmp,"\n");
-
-                //foreach (System.Web.UI.Pair s in exit)
-                //{
-                //   MessageBox.Show(s.First + " : " + s.Second + "\n");
-                //}
-
-                //try { MessageBox.Show(exit["Cell Width"].ToString()); } catch( Exception ex) { MessageBox.Show(ex.Message); }
-
-                //try { MessageBox.Show(exit["Image Width"].ToString()); } catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-
-                //BitmapDecoder decoder = BitmapDecoder.Create(new Uri(openfile.FileName), BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default); //"распаковали" снимок и создали объект decoder
-                //BitmapMetadata TmpImgEXIF = (BitmapMetadata)decoder.Frames[0].Metadata;
-
-                //MessageBox.Show(TmpImgEXIF.DateTaken.ToString());
-
-                //BitmapDecoder d = BitmapDecoder.Create(new Uri(openfile.FileName), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                //InPlaceBitmapMetadataWriter inplace = d.Frames[0].CreateInPlaceBitmapMetadataWriter();
-                //  MessageBox.Show(i..ToString());
-
-
-
-
-
-                //  MessageBox.Show((massImage.Count).ToString());
 
             }
         }
 
 
-       
+
 
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as Border).BorderThickness = new Thickness(1, 1, 1, 1);
+            var tmp = (sender as Border);
+            tmp.BorderThickness = new Thickness(1, 1, 1, 1);
+            var tmpIm = (tmp.Child as System.Windows.Controls.Image);
+
+           // imageName.Text= tmpIm.N
         }
 
         private void Image_MouseLeave(object sender, MouseEventArgs e)
@@ -132,5 +108,14 @@ namespace Image_Viewer
 
         public MainWindow Win { get; set; }
 
+        private void Thumb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var tmp = (sender as Border).Child;
+
+            var tmpIm = (tmp as System.Windows.Controls.Image);
+
+            Win.ImageMain.Source = tmpIm.Source;
+
+        }
     }
 }

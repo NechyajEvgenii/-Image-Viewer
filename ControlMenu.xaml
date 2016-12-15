@@ -454,7 +454,7 @@
                 </Setter.Value>
             </Setter>
         </Style>-->
-
+    
 
     </UserControl.Resources>
 
@@ -485,22 +485,29 @@
 
             <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"  ToolTip="Aspect to fill" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center"  
+                    ToolTip="Aspect to fill" Click="AspectToFillClick" />
 
             <Button Grid.Column="3" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleMinimize}" ToolTip="Fit" />
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{DynamicResource ButtonStyleMinimize}" 
+                    ToolTip="Fit"  Click="FitClick"/>
 
             <Button Grid.Column="4" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoom1:1}" ToolTip="Original size"/>
             <Button Grid.Column="5" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleOut}" ToolTip="Zoom out"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Style="{DynamicResource ButtonStyleOut}" 
+                    ToolTip="Zoom out"  Click="ZoomOutClick"/>
 
             <Button Grid.Column="6" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleZoomP}" ToolTip="Zoom in"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Style="{DynamicResource ButtonStyleZoomP}" 
+                    ToolTip="Zoom in" Click="ZoomInClick"/>
 
             <Button Grid.Column="7" 
                     Width="14" Height="14" 
@@ -533,23 +540,25 @@
 
             <Button Grid.Column="1" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleflip}"
-                    Margin="0,0,0,0" ToolTip="Flip vertically"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Style="{DynamicResource ButtonStyleflip}"
+                    Margin="0,0,0,0" ToolTip="Flip vertically" Click="FlipVerticallyClick"/>
 
             <Button Grid.Column="2" 
                     Width="14" Height="14" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylefliphorizont}"
-                    Margin="0,0,0,0" ToolTip="Flip horizontally"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Style="{DynamicResource ButtonStylefliphorizont}"
+                    Margin="0,0,0,0" ToolTip="Flip horizontally"  Click="FlipHorizontallyClick"/>
 
             <Button Grid.Column="3" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_left}"
-                    Margin="0,0,0,0" ToolTip="Rotate left"/>
+                    Margin="0,0,0,0" ToolTip="Rotate left" Click="ClickTrnsformImageLeft"/>
 
             <Button Grid.Column="4" 
                     Width="14" Height="14" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource ButtonStylerotate_right}"
-                    Margin="0,0,0,0" ToolTip="Rotate right"/>
+                    Margin="0,0,0,0" ToolTip="Rotate right"  Click="ClickTrnsformImageRight" />
 
             <CheckBox Grid.Column="5" Style="{DynamicResource CheckBoxAutoSave}"
                       Margin="0,23,13.071,23"

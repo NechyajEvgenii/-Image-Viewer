@@ -24,5 +24,13 @@ namespace Image_Viewer
         {
             InitializeComponent();
         }
-    }
+
+        //public string  TextFormatC  {  set{ TextFormat.Text = value; } }
+        //public string TextImageExtensionC { set{ TextImageExtension.Text = value; } }            
+        //public string TextPathC { set{ TextPath.Text = value; } }            
+        //public string TextDateC{ set{ TextDate.Text = value; }  }            
+        //public string TextImageSizeC { set{ TextImageSize.Text = value; } }            
+        //public string TextNameC{ set{TextName.Text = value; } }            
+        //public string TextTimeC { set{ TextTime.Text = value;  } }           
+    }                              
 }

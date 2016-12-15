@@ -48,30 +48,30 @@
             <Grid VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" >
                 <Grid.RowDefinitions>
 
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
-                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35*"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
 
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="TextFormat"  Grid.Row="0" 
-                  Style="{StaticResource BigText}" >JPG</TextBlock>
+                  Style="{StaticResource BigText}" ></TextBlock>
                 <TextBlock x:Name="TextImageExtension"  Grid.Row="1" 
-                   Style="{StaticResource BigText}"> 1920</TextBlock>
+                   Style="{StaticResource BigText}"> </TextBlock>
                 <TextBlock x:Name="TextImageSize"  Grid.Row="2"
-                   Style="{StaticResource BigText}">451</TextBlock>
+                   Style="{StaticResource BigText}"></TextBlock>
             </Grid>
 
             <Grid  VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="45"></RowDefinition>
                     <RowDefinition Height="25"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="TextName" Grid.Row="0" Style="{StaticResource SmallTextWhite}" >name</TextBlock>
-                <TextBlock x:Name="TextPath" Grid.Row="1" Style="{StaticResource SmallTextGray}">Path</TextBlock>
-                <TextBlock x:Name="TextDate" Grid.Row="2" Style="{StaticResource SmallTextWhite}">Date</TextBlock>
-                <TextBlock x:Name="TextTime" Grid.Row="3" Style="{StaticResource SmallTextGray}">time</TextBlock>
+                <TextBlock x:Name="TextName" Grid.Row="0"  Style="{StaticResource SmallTextWhite}" ></TextBlock>
+                <TextBlock x:Name="TextPath" Grid.Row="1" TextWrapping="Wrap" Style="{StaticResource SmallTextGray}"></TextBlock>
+                <TextBlock x:Name="TextDate" Grid.Row="2" Style="{StaticResource SmallTextWhite}"></TextBlock>
+                <TextBlock x:Name="TextTime" Grid.Row="3" Style="{StaticResource SmallTextGray}"></TextBlock>
             </Grid>
         </Grid>
     </Grid>

@@ -23,9 +23,13 @@
                                 <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Pressed.Thumb}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                        
+                        
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+           
         </Style>
         
         
@@ -233,6 +237,7 @@
                         <Style.Setters>
                             <EventSetter Event="MouseEnter" Handler="Image_MouseEnter"></EventSetter>
                             <EventSetter Event="MouseLeave" Handler="Image_MouseLeave"></EventSetter>
+                            <EventSetter Event="MouseLeftButtonDown" Handler="Thumb_MouseLeftButtonDown"></EventSetter>
                         </Style.Setters>
                     </Style>
                 </WrapPanel.Resources>

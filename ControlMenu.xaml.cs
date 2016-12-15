@@ -25,9 +25,51 @@ namespace Image_Viewer
             InitializeComponent();
         }
 
+        public MainWindow Win { get; set; }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("sdf");
+        }
+
+        private void ClickTrnsformImageLeft(object sender, RoutedEventArgs e)
+        {
+            Win.TransformImageLeft();
+        }
+
+        private void ClickTrnsformImageRight(object sender, RoutedEventArgs e)
+        {
+            Win.TransformImageRight();
+        }
+
+        private void FlipVerticallyClick(object sender, RoutedEventArgs e)
+        {
+            Win.FlipVertically();
+        }
+
+        private void FlipHorizontallyClick(object sender, RoutedEventArgs e)
+        {
+            Win.FlipHorizontally();
+        }
+
+        private void ZoomInClick(object sender, RoutedEventArgs e)
+        {
+            Win.ZoomIn();
+        }
+
+        private void ZoomOutClick(object sender, RoutedEventArgs e)
+        {
+            Win.ZoomOut();
+        }
+
+        private void AspectToFillClick(object sender, RoutedEventArgs e)
+        {
+            Win.Aspecttofill();
+        }
+
+        private void FitClick(object sender, RoutedEventArgs e)
+        {
+            Win.Fit();
         }
     }
 }
