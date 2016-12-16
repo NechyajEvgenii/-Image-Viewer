@@ -62,14 +62,13 @@ namespace Image_Viewer
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 try
                 {
-
-                    var b= new BitmapImage(new Uri(files[0]));
+                    var b = new BitmapImage(new Uri(files[0]));
                     ImageMain.Source = b;
                     OriginalHeight = b.Height;
                     OriginalWidth = b.Width;
                     CreateInfor(files[0]);
                     LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")));
-                   
+                    IndexElem = ListImagePath.IndexOf(files[0]);
                 }
                 catch
                 {
@@ -79,6 +78,10 @@ namespace Image_Viewer
             }
 
         }
+
+        public int IndexElem { get; set; }
+        public List<string> ListImagePath { get; set; }
+
 
         public void CreateInfor(string path)
         {
@@ -156,9 +159,10 @@ namespace Image_Viewer
             ScaleTr.ScaleX = 1;
             ScaleTr.ScaleY = 1;
 
-            ImageMain.Width=window.Width;
-            ImageMain.Height=window.Height;
-            TransformImage.Angle += 90; }
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
+            TransformImage.Angle += 90;
+        }
 
         public void FlipVertically()
         {
@@ -201,7 +205,8 @@ namespace Image_Viewer
             ImageMain.Height = window.Height;
             ImageMain.Stretch = Stretch.Uniform;
         }
-        public void Aspecttofill() {
+        public void Aspecttofill()
+        {
             Scrol.ScrollToHorizontalOffset(window.Width / 2);
             Scrol.ScrollToVerticalOffset(window.Height / 2);
 
@@ -211,7 +216,8 @@ namespace Image_Viewer
             ScaleTr.ScaleY = 1;
             ImageMain.Width = window.Width;
             ImageMain.Height = window.Height;
-            ImageMain.Stretch = Stretch.Fill; }
+            ImageMain.Stretch = Stretch.Fill;
+        }
 
         public void ZoomOut()
         {
@@ -251,23 +257,31 @@ namespace Image_Viewer
 
         public void Previous()
         {
-
+            try
+            {
+                IndexElem--;
+                if (IndexElem <= 0)
+                {
+                    IndexElem = ListImagePath.Count - 1;
+                }
+                ImageMain.Source = new BitmapImage(new Uri(ListImagePath[IndexElem]));
+                CreateInfor(ListImagePath[IndexElem]);
+            }
+            catch { }
         }
         public void Next()
         {
-            System.Windows.Controls.Image tmp =null;
-
-            for (int i = 0; i < LibraryImages.ListIm.Count; i++)
+            try
             {
-                try
+                IndexElem++;
+                if (IndexElem >= ListImagePath.Count)
                 {
-                    tmp = (LibraryImages.ListIm[i] as System.Windows.Controls.Image);
-                if (tmp.Source.ToString() == ImageMain.Source.ToString())
-                {
-                    }
-                    ImageMain.Source = (LibraryImages.ListIm[i + 1] as System.Windows.Controls.Image).Source;
-                    } catch { }
-            } 
+                    IndexElem = 0;
+                }
+                ImageMain.Source = new BitmapImage(new Uri(ListImagePath[IndexElem]));
+                CreateInfor(ListImagePath[IndexElem]);
+            }
+            catch { }
         }
     }
 

@@ -38,15 +38,17 @@ namespace Image_Viewer
             {
                 string str = openfile.FileName;
 
-                var b= new BitmapImage(new Uri(str));
+                var b = new BitmapImage(new Uri(str));
                 this.Win.ImageMainS.Source = b;
 
-                Win.OriginalHeight=b.Height;
-                Win.OriginalWidth=b.Width;
+                Win.OriginalHeight = b.Height;
+                Win.OriginalWidth = b.Width;
 
                 Win.CreateInfor(str);
                 str = str.Remove(str.LastIndexOf("\\"));
                 CreatImageLibrary(str);
+
+                Win.IndexElem = Win.ListImagePath.IndexOf(str);
             }
         }
 
@@ -56,9 +58,9 @@ namespace Image_Viewer
             var tmp = (sender as Border);
             tmp.BorderThickness = new Thickness(1, 1, 1, 1);
             var tmpIm = (tmp.Child as System.Windows.Controls.Image);
-       
+
             var s = tmpIm.Source.ToString();
-            var str = s.Remove(0,s.LastIndexOf(@"/")+1);
+            var str = s.Remove(0, s.LastIndexOf(@"/") + 1);
             imageName.Text = str.Split('.')[0];
         }
 
@@ -68,9 +70,11 @@ namespace Image_Viewer
             imageName.Text = null;
         }
 
+        List<string> listimage;
 
         public void CreatImageLibrary(string str)
         {
+            listimage = new List<string>();
             try
             {
                 var massImage = Directory.GetFiles(str, "*.*", SearchOption.TopDirectoryOnly)
@@ -84,6 +88,7 @@ namespace Image_Viewer
 
                 foreach (var item in massImage)
                 {
+                    listimage.Add(item);
                     var im = new Border()
                     {
                         Width = 55,
@@ -100,9 +105,10 @@ namespace Image_Viewer
                             Source = new BitmapImage(new Uri(item))
                         }
                     };
-                    WrapPan.Children.Add(im);
 
+                    WrapPan.Children.Add(im);
                 }
+                Win.ListImagePath = listimage;
             }
             catch { }
         }
@@ -118,13 +124,11 @@ namespace Image_Viewer
 
             Win.ImageMain.Source = tmpIm.Source;
 
+            Win.IndexElem = Win.ListImagePath.IndexOf(tmpIm.Source.ToString());
+
+            Win.CreateInfor(tmpIm.Source.ToString());
         }
 
-        public UIElementCollection ListIm
-        {
-          get { return WrapPan.Children; }
-
-        }
 
     }
 
