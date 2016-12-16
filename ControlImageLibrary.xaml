@@ -245,7 +245,8 @@
             </WrapPanel>
         </ScrollViewer>
 
-        <TextBlock x:Name="imageName" Height="20" Grid.Row="1" Background="Black" Foreground="#FFB6B6B6" VerticalAlignment="Bottom"></TextBlock>
+        <TextBlock x:Name="imageName" Height="20" Grid.Row="1" Background="Black" Foreground="#FFB6B6B6" 
+                   VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
         <Image HorizontalAlignment="Left" Height="53" Margin="-267,-67,0,0" VerticalAlignment="Top" Width="20"/>
         <!--<ScrollBar HorizontalAlignment="Left" Margin="472,0,-452,-43.5" Grid.Row="1" VerticalAlignment="Top" Height="63.5" Style="{DynamicResource ScrollBarStyle}" Background="Black" BorderBrush="Black"/>-->
 

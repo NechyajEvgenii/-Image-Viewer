@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:Image_Viewer"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
-        x:Name="window">
+        Title="MainWindow" 
+        MinHeight="300" MinWidth="400"
+        x:Name="window"
+         Drop="ImageMain_Drop"
+        AllowDrop="True"
+        >
     <Window.Resources>
     </Window.Resources>
     <Window.Background>
@@ -33,7 +37,8 @@
             <ScrollViewer Grid.ColumnSpan="5" 
                           ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                           x:Name="Scrol">
+                           x:Name="Scrol"
+                          Margin="0,0,0,0">
                 <Image x:Name="ImageMain" Grid.ColumnSpan="5"  AllowDrop="True" MouseEnter="ImageMain_MouseEnter"  
                        Drop="ImageMain_Drop" Source="image\FontDrag.jpg" 
                        RenderTransformOrigin="0.5,0.5"

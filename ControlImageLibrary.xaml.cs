@@ -47,14 +47,8 @@ namespace Image_Viewer
                 Win.CreateInfor(str);
                 str = str.Remove(str.LastIndexOf("\\"));
                 CreatImageLibrary(str);
-
-
-
             }
         }
-
-
-
 
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)
@@ -62,13 +56,16 @@ namespace Image_Viewer
             var tmp = (sender as Border);
             tmp.BorderThickness = new Thickness(1, 1, 1, 1);
             var tmpIm = (tmp.Child as System.Windows.Controls.Image);
-
-           // imageName.Text= tmpIm.N
+       
+            var s = tmpIm.Source.ToString();
+            var str = s.Remove(0,s.LastIndexOf(@"/")+1);
+            imageName.Text = str.Split('.')[0];
         }
 
         private void Image_MouseLeave(object sender, MouseEventArgs e)
         {
             (sender as Border).BorderThickness = new Thickness(0, 0, 0, 0);
+            imageName.Text = null;
         }
 
 
@@ -122,5 +119,14 @@ namespace Image_Viewer
             Win.ImageMain.Source = tmpIm.Source;
 
         }
+
+        public UIElementCollection ListIm
+        {
+          get { return WrapPan.Children; }
+
+        }
+
     }
+
+
 }

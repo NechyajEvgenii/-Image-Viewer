@@ -73,5 +73,15 @@ namespace Image_Viewer
         {
             Win.OriginalSize();
         }
+
+        private void ClickNext(object sender, RoutedEventArgs e)
+        {
+            Win.Next();
+        }
+
+        private void ClicPrevious(object sender, RoutedEventArgs e)
+        {
+            Win.Previous();
+        }
     }
 }

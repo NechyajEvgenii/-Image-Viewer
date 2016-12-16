@@ -135,26 +135,83 @@ namespace Image_Viewer
 
         public void TransformImageLeft()
         {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
             TransformImage.Angle -= 90;
         }
         public void TransformImageRight()
-        { TransformImage.Angle += 90; }
+        {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+
+            ImageMain.Width=window.Width;
+            ImageMain.Height=window.Height;
+            TransformImage.Angle += 90; }
 
         public void FlipVertically()
         {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
             TransformImage.Angle = 90;
         }
 
         public void FlipHorizontally()
         {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
             TransformImage.Angle = 180;
         }
 
         public void Fit()
         {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
             ImageMain.Stretch = Stretch.Uniform;
         }
-        public void Aspecttofill() { ImageMain.Stretch = Stretch.Fill; }
+        public void Aspecttofill() {
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
+            ImageMain.Width = window.Width;
+            ImageMain.Height = window.Height;
+            ImageMain.Stretch = Stretch.Fill; }
 
         public void ZoomOut()
         {
@@ -179,11 +236,39 @@ namespace Image_Viewer
 
         public void OriginalSize()
         {
+
+            Scrol.ScrollToHorizontalOffset(window.Width / 2);
+            Scrol.ScrollToVerticalOffset(window.Height / 2);
+
+            ScaleTr.CenterX = window.Width / 2;
+            ScaleTr.CenterY = window.Height / 2;
+            ScaleTr.ScaleX = 1;
+            ScaleTr.ScaleY = 1;
             ImageMain.Width = OriginalWidth;
             ImageMain.Height = OriginalHeight;
         }
 
 
+        public void Previous()
+        {
+
+        }
+        public void Next()
+        {
+            System.Windows.Controls.Image tmp =null;
+
+            for (int i = 0; i < LibraryImages.ListIm.Count; i++)
+            {
+                try
+                {
+                    tmp = (LibraryImages.ListIm[i] as System.Windows.Controls.Image);
+                if (tmp.Source.ToString() == ImageMain.Source.ToString())
+                {
+                    }
+                    ImageMain.Source = (LibraryImages.ListIm[i + 1] as System.Windows.Controls.Image).Source;
+                    } catch { }
+            } 
+        }
     }
 
 
