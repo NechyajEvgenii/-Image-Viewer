@@ -489,7 +489,7 @@
 
 
             <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30.104" Width="178.187" Margin="1.881,22,1.874,26.896"/>
-            <Button Content="Button" Margin="0,31,0,36"   VerticalAlignment="Center"  HorizontalAlignment="Right" Style="{DynamicResource ButtonStylePin}"  Height="12" Width="12" />
+            <CheckBox Style="{StaticResource CheckBoxStyle}" Margin="13.588,27,2.912,36.5" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
             <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="2.088,22,2.089,27"  Width="30" Height="30" Grid.Column="1"  />
 
             <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  

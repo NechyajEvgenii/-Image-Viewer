@@ -91,14 +91,14 @@ namespace Image_Viewer
                     listimage.Add(item);
                     var im = new Border()
                     {
-                        Width = 55,
-                        Height = 40,
+                        Width = 70,
+                        Height = 50,
                         BorderThickness = new Thickness(0, 0, 0, 0),
                         BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
                         Child = new System.Windows.Controls.Image()
                         {
-                            Width = 50,
-                            Height = 30,
+                            Width = 65,
+                            Height = 40,
                             Stretch = Stretch.Fill,
                             HorizontalAlignment = HorizontalAlignment.Center,
                             VerticalAlignment = VerticalAlignment.Center,
@@ -126,10 +126,18 @@ namespace Image_Viewer
 
             Win.IndexElem = Win.ListImagePath.IndexOf(tmpIm.Source.ToString());
 
-            Win.CreateInfor(tmpIm.Source.ToString());
+            Win.CreateInfor(tmpIm.Source.ToString().Remove(0,8));
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlLibrary = false;
+        }
 
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlLibrary = true;
+        }
     }
 
 

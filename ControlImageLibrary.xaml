@@ -220,12 +220,16 @@
 
 
     </UserControl.Resources>
-    <Grid>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer x:Name="Scrol" Template="{DynamicResource ScrollViewerControlTemplate}"  >
+
+        <CheckBox Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"></CheckBox>
+
+        <ScrollViewer x:Name="Scrol"  Grid.Row="1"  Template="{DynamicResource ScrollViewerControlTemplate}"  >
             <WrapPanel Name="WrapPan" Orientation="Horizontal" Background="Black" >
                 <WrapPanel.ContextMenu>
                     <ContextMenu>
@@ -245,9 +249,9 @@
             </WrapPanel>
         </ScrollViewer>
 
-        <TextBlock x:Name="imageName" Height="20" Grid.Row="1" Background="Black" Foreground="#FFB6B6B6" 
+        <TextBlock x:Name="imageName" Height="20" Grid.Row="2" Background="Black" Foreground="#FFB6B6B6" 
                    VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
-        <Image HorizontalAlignment="Left" Height="53" Margin="-267,-67,0,0" VerticalAlignment="Top" Width="20"/>
+        <!--<Image HorizontalAlignment="Left" Height="53" Margin="-267,-67,0,0" VerticalAlignment="Top" Width="20"/>-->
         <!--<ScrollBar HorizontalAlignment="Left" Margin="472,0,-452,-43.5" Grid.Row="1" VerticalAlignment="Top" Height="63.5" Style="{DynamicResource ScrollBarStyle}" Background="Black" BorderBrush="Black"/>-->
 
     </Grid>

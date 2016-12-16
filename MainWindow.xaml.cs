@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,11 +29,15 @@ namespace Image_Viewer
             InitializeComponent();
             LibraryImages.Win = this;
             ControlM.Win = this;
+            ImageInf.Win = this;
+            HideControlInform = true;
+            HideControlLibrary = true;
+            HideControlMenu = true;
         }
 
-        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        private void ShowControlLibrary(object sender, MouseEventArgs e)
         {
-            LibraryImages.Width = 252;
+            LibraryImages.Width = 300;
         }
 
 
@@ -49,11 +54,6 @@ namespace Image_Viewer
         public double OriginalHeight { get; set; }
         public double OriginalWidth { get; set; }
 
-
-        private void Border_MouseEnter_1(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show("sdf");
-        }
 
         private void ImageMain_Drop(object sender, DragEventArgs e)
         {
@@ -85,7 +85,8 @@ namespace Image_Viewer
 
         public void CreateInfor(string path)
         {
-
+            ToScale();
+            TransformImage.Angle = 0;
             Bitmap bmp = new Bitmap(path);
 
             EXIFextractor exit = new EXIFextractor(ref bmp, "\n");
@@ -96,6 +97,8 @@ namespace Image_Viewer
             ImageInf.TextName.Text = s.Remove(s.IndexOf("."));
             ImageInf.TextFormat.Text = path.Remove(0, path.LastIndexOf(".") + 1);
             ImageInf.TextImageExtension.Text = $"{bmp.Width}x{bmp.Height}";
+
+            var f = bmp.PropertyItems;
 
 
             try
@@ -110,33 +113,26 @@ namespace Image_Viewer
                 ImageInf.TextDate.Text = null;
             }
 
-            //try { MessageBox.Show(exit["Image Width"].ToString()); } catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-
-
-            //MessageBox.Show(TmpImgEXIF.DateTaken.ToString());
-
-            //BitmapDecoder d = BitmapDecoder.Create(new Uri(openfile.FileName), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-            //InPlaceBitmapMetadataWriter inplace = d.Frames[0].CreateInPlaceBitmapMetadataWriter();
-            //  MessageBox.Show(i..ToString());
-
-            //  MessageBox.Show((massImage.Count).ToString());
-
         }
 
-        private void Border_MouseEnter2(object sender, MouseEventArgs e)
+        private void ShowControlInform(object sender, MouseEventArgs e)
         {
-            ImageInf.Width = 230;
+            ImageInf.Width = 250;
         }
 
-        private void ImageMain_MouseEnter(object sender, MouseEventArgs e)
+        private void HideControl(object sender, MouseEventArgs e)
         {
-            ImageInf.Width = 0;
-            LibraryImages.Width = 0;
+            if (HideControlInform)
+                ImageInf.Width = 0;
+
+            if (HideControlLibrary)
+                LibraryImages.Width = 0;
+
+            if  (HideControlMenu)
+                ControlM.Height = 0;
         }
 
-
-        public void TransformImageLeft()
+        private void ToScale()
         {
             Scrol.ScrollToHorizontalOffset(window.Width / 2);
             Scrol.ScrollToVerticalOffset(window.Height / 2);
@@ -147,75 +143,40 @@ namespace Image_Viewer
             ScaleTr.ScaleY = 1;
             ImageMain.Width = window.Width;
             ImageMain.Height = window.Height;
+
+        }
+
+        public void TransformImageLeft()
+        {
+            ToScale();
             TransformImage.Angle -= 90;
         }
         public void TransformImageRight()
         {
-            Scrol.ScrollToHorizontalOffset(window.Width / 2);
-            Scrol.ScrollToVerticalOffset(window.Height / 2);
-
-            ScaleTr.CenterX = window.Width / 2;
-            ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = 1;
-            ScaleTr.ScaleY = 1;
-
-            ImageMain.Width = window.Width;
-            ImageMain.Height = window.Height;
+            ToScale();
             TransformImage.Angle += 90;
         }
 
         public void FlipVertically()
         {
-            Scrol.ScrollToHorizontalOffset(window.Width / 2);
-            Scrol.ScrollToVerticalOffset(window.Height / 2);
-
-            ScaleTr.CenterX = window.Width / 2;
-            ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = 1;
-            ScaleTr.ScaleY = 1;
-            ImageMain.Width = window.Width;
-            ImageMain.Height = window.Height;
+            ToScale();
             TransformImage.Angle = 90;
         }
 
         public void FlipHorizontally()
         {
-            Scrol.ScrollToHorizontalOffset(window.Width / 2);
-            Scrol.ScrollToVerticalOffset(window.Height / 2);
-
-            ScaleTr.CenterX = window.Width / 2;
-            ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = 1;
-            ScaleTr.ScaleY = 1;
-            ImageMain.Width = window.Width;
-            ImageMain.Height = window.Height;
+            ToScale();
             TransformImage.Angle = 180;
         }
 
         public void Fit()
         {
-            Scrol.ScrollToHorizontalOffset(window.Width / 2);
-            Scrol.ScrollToVerticalOffset(window.Height / 2);
-
-            ScaleTr.CenterX = window.Width / 2;
-            ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = 1;
-            ScaleTr.ScaleY = 1;
-            ImageMain.Width = window.Width;
-            ImageMain.Height = window.Height;
+            ToScale();
             ImageMain.Stretch = Stretch.Uniform;
         }
         public void Aspecttofill()
         {
-            Scrol.ScrollToHorizontalOffset(window.Width / 2);
-            Scrol.ScrollToVerticalOffset(window.Height / 2);
-
-            ScaleTr.CenterX = window.Width / 2;
-            ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = 1;
-            ScaleTr.ScaleY = 1;
-            ImageMain.Width = window.Width;
-            ImageMain.Height = window.Height;
+            ToScale();
             ImageMain.Stretch = Stretch.Fill;
         }
 
@@ -225,8 +186,8 @@ namespace Image_Viewer
             Scrol.ScrollToVerticalOffset(window.Height / 2);
             ScaleTr.CenterX = window.Width / 2;
             ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX -= 0.1;
-            ScaleTr.ScaleY -= 0.1;
+            ScaleTr.ScaleX = ScaleTr.ScaleX <= 0.2 ? 0.1 : ScaleTr.ScaleX-0.1;
+            ScaleTr.ScaleY = ScaleTr.ScaleY <= 0.2 ? 0.1 : ScaleTr.ScaleY - 0.1;
         }
 
         public void ZoomIn()
@@ -283,10 +244,15 @@ namespace Image_Viewer
             }
             catch { }
         }
+
+
+        public bool HideControlInform { get; set; }
+        public bool HideControlLibrary { get; set; }
+        public bool HideControlMenu { get; set; }
+
+        private void ShowControlMenu(object sender, MouseEventArgs e)
+        {
+            ControlM.Height = 80;
+        }
     }
-
-
-
-
-
 }

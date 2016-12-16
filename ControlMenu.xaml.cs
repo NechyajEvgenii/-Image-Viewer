@@ -83,5 +83,15 @@ namespace Image_Viewer
         {
             Win.Previous();
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlMenu = false;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlMenu = true;
+        }
     }
 }

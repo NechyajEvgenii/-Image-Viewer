@@ -25,6 +25,19 @@ namespace Image_Viewer
             InitializeComponent();
         }
 
+
+        public MainWindow Win { get; set; }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlInform = false;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Win.HideControlInform = true;
+        }
+
         //public string  TextFormatC  {  set{ TextFormat.Text = value; } }
         //public string TextImageExtensionC { set{ TextImageExtension.Text = value; } }            
         //public string TextPathC { set{ TextPath.Text = value; } }            
