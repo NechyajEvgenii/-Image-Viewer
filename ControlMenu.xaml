@@ -433,6 +433,42 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ChecksSlideShow" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid x:Name="markGrid">
+                                    <Image x:Name="optionMark"  Source="image/p_slideshow@2x.png" Height="45"   Width="45" Opacity="0.3"   HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <Image x:Name="indeterminateMark"   Source="image/s_slideshow@2x.png" Height="45"  Width="45" Opacity="0"   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0.3"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0.3"/>
+                                <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
         <!--<Style x:Key="{x:Type ToolTip}" TargetType="ToolTip">
@@ -490,7 +526,14 @@
 
             <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30.104" Width="178.187" Margin="1.881,22,1.874,26.896"/>
             <CheckBox Style="{StaticResource CheckBoxStyle}" Margin="13.588,27,2.912,36.5" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
-            <Button  Style="{DynamicResource ButtonStylePlay}"  VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="2.088,22,2.089,27"  Width="30" Height="30" Grid.Column="1"  />
+            <CheckBox  VerticalAlignment="Center"  
+                     HorizontalAlignment="Center" Margin="28.286,17.552,0,21.448" 
+                     Width="38.058" Height="40" 
+                      Style="{DynamicResource ChecksSlideShow}" 
+                       Grid.ColumnSpan="2"
+                       Checked="CheckBox_CheckedSlideShow"
+                       Unchecked="CheckBox_UnCheckedSlideShow"
+                     />
 
             <Button Grid.Column="2" Style="{DynamicResource ButtonStylepMaximize}"  
                     Width="20" Height="20" 

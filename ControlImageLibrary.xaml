@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Image_Viewer"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"  SizeChanged="UserControl_SizeChanged">
     <UserControl.Resources>
       
         
@@ -220,7 +220,7 @@
 
 
     </UserControl.Resources>
-    <Grid Background="Black">
+    <Grid Background="Black" x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -231,11 +231,11 @@
 
         <ScrollViewer x:Name="Scrol"  Grid.Row="1"  Template="{DynamicResource ScrollViewerControlTemplate}"  >
             <WrapPanel Name="WrapPan" Orientation="Horizontal" Background="Black" >
-                <WrapPanel.ContextMenu>
+                <!--<WrapPanel.ContextMenu>
                     <ContextMenu>
                         <MenuItem Click="MenuItem_Click">Open</MenuItem>
                     </ContextMenu>
-                </WrapPanel.ContextMenu>
+                </WrapPanel.ContextMenu>-->
                 <WrapPanel.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Style.Setters>

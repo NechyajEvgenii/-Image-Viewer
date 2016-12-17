@@ -28,6 +28,20 @@ namespace Image_Viewer
             InitializeComponent();
         }
 
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (Width >= 295)
+            {
+                grid.Opacity = 1;
+            }
+
+            if (Width <= 280)
+            {
+                grid.Opacity = 0;
+            }
+        }
+
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openfile = new OpenFileDialog()

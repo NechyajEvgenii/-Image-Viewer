@@ -93,5 +93,17 @@ namespace Image_Viewer
         {
             Win.HideControlMenu = true;
         }
+
+       
+
+        private void CheckBox_CheckedSlideShow(object sender, RoutedEventArgs e)
+        {
+            Win.SlideShowStart();
+        }
+
+        private void CheckBox_UnCheckedSlideShow(object sender, RoutedEventArgs e)
+        {
+            Win.SlideShowStop();
+        }
     }
 }

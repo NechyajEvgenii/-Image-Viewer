@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -37,7 +39,13 @@ namespace Image_Viewer
 
         private void ShowControlLibrary(object sender, MouseEventArgs e)
         {
-            LibraryImages.Width = 300;
+            DoubleAnimation animation = new DoubleAnimation()
+            {
+                //  From = 0,
+                To = 300,
+                Duration = TimeSpan.FromSeconds(0.4),
+            };
+            LibraryImages.BeginAnimation(WidthProperty, animation);
         }
 
 
@@ -117,19 +125,47 @@ namespace Image_Viewer
 
         private void ShowControlInform(object sender, MouseEventArgs e)
         {
-            ImageInf.Width = 250;
+            DoubleAnimation animation = new DoubleAnimation()
+            {
+                //  From = 0,
+                To = 250,
+                Duration = TimeSpan.FromSeconds(0.4),
+            };
+            ImageInf.BeginAnimation(WidthProperty, animation);
         }
 
         private void HideControl(object sender, MouseEventArgs e)
         {
+          
+            if (HideControlMenu)
+            {
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.4),
+                };
+                ControlM.BeginAnimation(HeightProperty, animation);
+            }
+
             if (HideControlInform)
-                ImageInf.Width = 0;
+            {
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.4),
+                };
+                ImageInf.BeginAnimation(WidthProperty, animation);
+            }
 
             if (HideControlLibrary)
-                LibraryImages.Width = 0;
-
-            if  (HideControlMenu)
-                ControlM.Height = 0;
+            {
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    To = 0,
+                    Duration = TimeSpan.FromSeconds(0.4),
+                };
+                LibraryImages.BeginAnimation(WidthProperty, animation);
+            }
         }
 
         private void ToScale()
@@ -186,7 +222,7 @@ namespace Image_Viewer
             Scrol.ScrollToVerticalOffset(window.Height / 2);
             ScaleTr.CenterX = window.Width / 2;
             ScaleTr.CenterY = window.Height / 2;
-            ScaleTr.ScaleX = ScaleTr.ScaleX <= 0.2 ? 0.1 : ScaleTr.ScaleX-0.1;
+            ScaleTr.ScaleX = ScaleTr.ScaleX <= 0.2 ? 0.1 : ScaleTr.ScaleX - 0.1;
             ScaleTr.ScaleY = ScaleTr.ScaleY <= 0.2 ? 0.1 : ScaleTr.ScaleY - 0.1;
         }
 
@@ -227,9 +263,48 @@ namespace Image_Viewer
                 }
                 ImageMain.Source = new BitmapImage(new Uri(ListImagePath[IndexElem]));
                 CreateInfor(ListImagePath[IndexElem]);
+
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(0.8),
+                };
+                ImageMain.BeginAnimation(OpacityProperty, animation);
             }
             catch { }
         }
+
+        int i;
+
+        private void Elapsed(object sender)
+        {
+            Dispatcher.Invoke(() => {
+
+                try
+                {
+                    IndexElem++;
+                    if (i >= ListImagePath.Count)
+                    {
+                        i = 0;
+                    }
+                    ImageMain.Source = new BitmapImage(new Uri(ListImagePath[i]));
+                    CreateInfor(ListImagePath[i]);
+
+                    DoubleAnimation animation = new DoubleAnimation()
+                    {
+                        From = 0,
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(2),
+                    };
+                    ImageMain.BeginAnimation(OpacityProperty, animation);
+                    i++;
+                }
+                catch { }
+
+            });
+        }
+
         public void Next()
         {
             try
@@ -241,6 +316,15 @@ namespace Image_Viewer
                 }
                 ImageMain.Source = new BitmapImage(new Uri(ListImagePath[IndexElem]));
                 CreateInfor(ListImagePath[IndexElem]);
+
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(0.8),
+                };
+                ImageMain.BeginAnimation(OpacityProperty, animation);
+
             }
             catch { }
         }
@@ -252,7 +336,66 @@ namespace Image_Viewer
 
         private void ShowControlMenu(object sender, MouseEventArgs e)
         {
-            ControlM.Height = 80;
+            DoubleAnimation animation = new DoubleAnimation()
+            {
+                //  From = 0,
+                To = 80,
+                Duration = TimeSpan.FromSeconds(0.4),
+            };
+            ControlM.BeginAnimation(HeightProperty, animation);
         }
+
+        Timer timer;
+
+        public void SlideShowStart()
+        {
+            timer = new Timer(Elapsed, null, 5000, 5000);
+
+        }
+        public void SlideShowStop()
+        {
+            timer.Dispose();
+        }
+
+
+
+        //    private void HideControlMenuM(object sender, MouseEventArgs e)
+        //    {
+        //        if (HideControlMenu)
+        //        {
+        //            DoubleAnimation animation = new DoubleAnimation()
+        //            {
+        //                To = 0,
+        //                Duration = TimeSpan.FromSeconds(0.2),
+        //            };
+        //            ControlM.BeginAnimation(HeightProperty, animation);
+        //        }
+        //    }
+
+        //    private void HideControlFileInform(object sender, MouseEventArgs e)
+        //    {
+        //        if (HideControlInform)
+        //        {
+        //            DoubleAnimation animation = new DoubleAnimation()
+        //            {
+        //                To = 0,
+        //                Duration = TimeSpan.FromSeconds(0.2),
+        //            };
+        //            ImageInf.BeginAnimation(WidthProperty, animation);
+        //        }
+        //    }
+
+        //    private void HideControlLibraryM(object sender, MouseEventArgs e)
+        //    {
+        //        if (HideControlLibrary)
+        //        {
+        //            DoubleAnimation animation = new DoubleAnimation()
+        //            {
+        //                To = 0,
+        //                Duration = TimeSpan.FromSeconds(0.4),
+        //            };
+        //            LibraryImages.BeginAnimation(WidthProperty, animation);
+        //        }
+        //    }
     }
 }
