@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Schedulers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,14 +29,21 @@ namespace Image_Viewer
     {
         public MainWindow()
         {
+
             InitializeComponent();
+            HideControlInform = true;
+            HideControlLibrary = true;
+            HideControlMenu = false;
             LibraryImages.Win = this;
             ControlM.Win = this;
             ImageInf.Win = this;
-            HideControlInform = true;
-            HideControlLibrary = true;
-            HideControlMenu = true;
+
         }
+
+        public bool HideControlInform { get; set; }
+        public bool HideControlLibrary { get; set; }
+        public bool HideControlMenu { get; set; }
+
 
         private void ShowControlLibrary(object sender, MouseEventArgs e)
         {
@@ -67,28 +75,27 @@ namespace Image_Viewer
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
+
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 try
                 {
-                    var b = new BitmapImage(new Uri(files[0]));
+                    BitmapImage b = new BitmapImage(new Uri(files[0]));
                     ImageMain.Source = b;
                     OriginalHeight = b.Height;
                     OriginalWidth = b.Width;
                     CreateInfor(files[0]);
-                    LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")));
-                    IndexElem = ListImagePath.IndexOf(files[0]);
+                    LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")), files[0]);
                 }
-                catch
+                catch 
                 {
-                    LibraryImages.CreatImageLibrary(files[0]);
+                    LibraryImages.CreatImageLibrary(files[0],null);
                 }
-
             }
 
         }
 
         public int IndexElem { get; set; }
-        public List<string> ListImagePath { get; set; }
+        public  List<string> ListImagePath { get; set; }
 
 
         public void CreateInfor(string path)
@@ -131,12 +138,13 @@ namespace Image_Viewer
                 To = 250,
                 Duration = TimeSpan.FromSeconds(0.4),
             };
+
             ImageInf.BeginAnimation(WidthProperty, animation);
         }
 
         private void HideControl(object sender, MouseEventArgs e)
         {
-          
+
             if (HideControlMenu)
             {
                 DoubleAnimation animation = new DoubleAnimation()
@@ -279,36 +287,36 @@ namespace Image_Viewer
 
         private void Elapsed(object sender)
         {
-            Dispatcher.Invoke(() => {
 
-                try
+            Save();
+            try
+            {
+                IndexElem++;
+                if (i >= ListImagePath.Count)
                 {
-                    IndexElem++;
-                    if (i >= ListImagePath.Count)
-                    {
-                        i = 0;
-                    }
-                    ImageMain.Source = new BitmapImage(new Uri(ListImagePath[i]));
-                    CreateInfor(ListImagePath[i]);
-
-                    DoubleAnimation animation = new DoubleAnimation()
-                    {
-                        From = 0,
-                        To = 1,
-                        Duration = TimeSpan.FromSeconds(2),
-                    };
-                    ImageMain.BeginAnimation(OpacityProperty, animation);
-                    i++;
+                    i = 0;
                 }
-                catch { }
+                ImageMain.Source = new BitmapImage(new Uri(ListImagePath[i]));
+                CreateInfor(ListImagePath[i]);
 
-            });
+                DoubleAnimation animation = new DoubleAnimation()
+                {
+                    From = 0,
+                    To = 1,
+                    Duration = TimeSpan.FromSeconds(2),
+                };
+                ImageMain.BeginAnimation(OpacityProperty, animation);
+                i++;
+            }
+            catch { }
+
         }
 
         public void Next()
         {
             try
             {
+                Save();
                 IndexElem++;
                 if (IndexElem >= ListImagePath.Count)
                 {
@@ -326,13 +334,11 @@ namespace Image_Viewer
                 ImageMain.BeginAnimation(OpacityProperty, animation);
 
             }
-            catch { }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
 
-        public bool HideControlInform { get; set; }
-        public bool HideControlLibrary { get; set; }
-        public bool HideControlMenu { get; set; }
+
 
         private void ShowControlMenu(object sender, MouseEventArgs e)
         {
@@ -358,6 +364,36 @@ namespace Image_Viewer
         }
 
 
+        private void Save()
+        {
+            //var str= ImageMain.Source.ToString();
+            //var path = str.Remove(0, str.IndexOf("///") + 3); 
+            //var angle = Int32.Parse(TransformImage.Angle.ToString());
+            //Bitmap bitm = new Bitmap(path);
+            
+            //while (angle > 360)
+            //{
+            //    angle -= 360;
+            //}
+          
+            //switch (angle / 90)
+            //{
+            //    case 1:
+            //        bitm.RotateFlip(RotateFlipType.Rotate90FlipX);
+            //        break;
+            //    case 2:
+            //        bitm.RotateFlip(RotateFlipType.Rotate180FlipX);
+            //        break;
+            //    case 3:
+            //        bitm.RotateFlip(RotateFlipType.Rotate270FlipX);
+            //        break;
+            //    default:
+            //        bitm.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+            //        break;
+            //}
+
+            //bitm.Save(path);
+        }
 
         //    private void HideControlMenuM(object sender, MouseEventArgs e)
         //    {

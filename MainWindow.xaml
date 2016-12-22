@@ -47,7 +47,7 @@
                            x:Name="Scrol"
                           Margin="0,0,0,0">
                 <Image x:Name="ImageMain" Grid.ColumnSpan="5"  AllowDrop="True" 
-                       Drop="ImageMain_Drop" Source="image\FontDrop.jpg" 
+                       Source="image\FontDrop.jpg" 
                        RenderTransformOrigin="0.5,0.5"
                        Width="{Binding ElementName=window, Path=Width}"
                        Height="{Binding ElementName=window, Path=Height}"
@@ -79,7 +79,7 @@
 
             <Border x:Name="BorderCMenu" Grid.ColumnSpan="5"  MouseEnter="ShowControlMenu" Height="15" Opacity="0.1"  VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Background="Black"/>
 
-            <local:ControlMenu x:Name="ControlM"  Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="0"></local:ControlMenu>
+            <local:ControlMenu x:Name="ControlM"  Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="80"></local:ControlMenu>
         </Grid>
     </Grid>
 </Window>

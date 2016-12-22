@@ -6,7 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Schedulers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,43 +30,30 @@ namespace Image_Viewer
             InitializeComponent();
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (Width >= 295)
-            {
-                grid.Opacity = 1;
-            }
 
-            if (Width <= 280)
-            {
-                grid.Opacity = 0;
-            }
-        }
+        //private void MenuItem_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog openfile = new OpenFileDialog()
+        //    {
+        //        Filter = "(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*"
+        //    };
+        //    if (openfile.ShowDialog() == true)
+        //    {
+        //        string str = openfile.FileName;
 
+        //        var b = new BitmapImage(new Uri(str));
+        //        this.Win.ImageMainS.Source = b;
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openfile = new OpenFileDialog()
-            {
-                Filter = "(*.BMP;*.JPG;*.GIF,*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*"
-            };
-            if (openfile.ShowDialog() == true)
-            {
-                string str = openfile.FileName;
+        //        Win.OriginalHeight = b.Height;
+        //        Win.OriginalWidth = b.Width;
 
-                var b = new BitmapImage(new Uri(str));
-                this.Win.ImageMainS.Source = b;
+        //        Win.CreateInfor(str);
+        //        str = str.Remove(str.LastIndexOf("\\"));
+        //        CreatImageLibrary(str);
 
-                Win.OriginalHeight = b.Height;
-                Win.OriginalWidth = b.Width;
-
-                Win.CreateInfor(str);
-                str = str.Remove(str.LastIndexOf("\\"));
-                CreatImageLibrary(str);
-
-                Win.IndexElem = Win.ListImagePath.IndexOf(str);
-            }
-        }
+        //        Win.IndexElem = Win.ListImagePath.IndexOf(str);
+        //    }
+        // }
 
 
         private void Image_MouseEnter(object sender, MouseEventArgs e)
@@ -74,8 +63,7 @@ namespace Image_Viewer
             var tmpIm = (tmp.Child as System.Windows.Controls.Image);
 
             var s = tmpIm.Source.ToString();
-            var str = s.Remove(0, s.LastIndexOf(@"/") + 1);
-            imageName.Text = str.Split('.')[0];
+            imageName.Text = System.IO.Path.GetFileNameWithoutExtension(s);
         }
 
         private void Image_MouseLeave(object sender, MouseEventArgs e)
@@ -84,47 +72,70 @@ namespace Image_Viewer
             imageName.Text = null;
         }
 
-        List<string> listimage;
+        static List<string> listimage;
 
-        public void CreatImageLibrary(string str)
+
+        public void CreatImageLibrary(string pathfolfer, string pathfile)
         {
-            listimage = new List<string>();
-            try
-            {
-                var massImage = Directory.GetFiles(str, "*.*", SearchOption.TopDirectoryOnly)
-                        .Where(s => s.EndsWith(".jpg")
-                        || s.EndsWith(".bmp")
-                        || s.EndsWith(".png")
-                        || s.EndsWith(".JPG")
-                        );
 
-                WrapPan.Children.Clear();
+            ProgresBar1.Visibility = Visibility.Visible;
+
+            WrapPan.Children.Clear();
+
+            listimage = new List<string>();
+
+            new Thread(() =>
+            {
+                var massImage = Directory.GetFiles(pathfolfer, "*.*", SearchOption.TopDirectoryOnly)
+                        .Where(s => s.ToLower().EndsWith(".jpg")
+                        || s.ToLower().EndsWith(".bmp")
+                        || s.ToLower().EndsWith(".png"));
+
 
                 foreach (var item in massImage)
                 {
-                    listimage.Add(item);
-                    var im = new Border()
+                    Dispatcher.Invoke(() =>
                     {
-                        Width = 70,
-                        Height = 50,
-                        BorderThickness = new Thickness(0, 0, 0, 0),
-                        BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
-                        Child = new System.Windows.Controls.Image()
-                        {
-                            Width = 65,
-                            Height = 40,
-                            Stretch = Stretch.Fill,
-                            HorizontalAlignment = HorizontalAlignment.Center,
-                            VerticalAlignment = VerticalAlignment.Center,
-                            Source = new BitmapImage(new Uri(item))
-                        }
-                    };
+                        listimage.Add(item);
 
-                    WrapPan.Children.Add(im);
+                        BitmapImage source = new BitmapImage();
+                        source.BeginInit();
+                        source.UriSource = new Uri(item);
+                        source.DecodePixelHeight = 130;
+                        source.DecodePixelWidth = 80;
+                        source.EndInit();
+
+                        var border = new Border()
+                        {
+                            Width = 70,
+                            Height = 50,
+                            BorderThickness = new Thickness(0, 0, 0, 0),
+                            BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
+                            Child = new System.Windows.Controls.Image()
+                            {
+                                Width = 65,
+                                Height = 40,
+                                Stretch = Stretch.Fill,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                VerticalAlignment = VerticalAlignment.Center,
+                                Source = source
+                            }
+                        };
+                        WrapPan.Children.Add(border);
+                        Win.ListImagePath = listimage;
+                    }, System.Windows.Threading.DispatcherPriority.Background);
+
+
                 }
-                Win.ListImagePath = listimage;
-            }
-            catch { }
+
+                Dispatcher.Invoke(() =>
+                {
+                    if (pathfile != null)
+                        Win.IndexElem = listimage.IndexOf(pathfile);
+                    ProgresBar1.Visibility = Visibility.Collapsed;
+                }, System.Windows.Threading.DispatcherPriority.Background);
+
+            }).Start();
         }
 
 
@@ -134,13 +145,17 @@ namespace Image_Viewer
         {
             var tmp = (sender as Border).Child;
 
-            var tmpIm = (tmp as System.Windows.Controls.Image);
+            var tmpIm = (tmp as System.Windows.Controls.Image).Source as BitmapImage;
 
-            Win.ImageMain.Source = tmpIm.Source;
+            var sourse= new BitmapImage(tmpIm.UriSource);
+            // Dispatcher.Invoke((Action)delegate
+            //{
+            Win.ImageMain.Source = sourse;
+         //  }, System.Windows.Threading.DispatcherPriority.Background);
 
-            Win.IndexElem = Win.ListImagePath.IndexOf(tmpIm.Source.ToString());
+            Win.IndexElem = Win.ListImagePath.IndexOf(sourse.ToString());
 
-            Win.CreateInfor(tmpIm.Source.ToString().Remove(0,8));
+            Win.CreateInfor(sourse.ToString().Remove(0, 8));
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

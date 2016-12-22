@@ -525,7 +525,7 @@
 
 
             <Image Source="image\p_icons_area@2x.png" Grid.Column="2" Grid.ColumnSpan="5" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30.104" Width="178.187" Margin="1.881,22,1.874,26.896"/>
-            <CheckBox Style="{StaticResource CheckBoxStyle}" Margin="13.588,27,2.912,36.5" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
+            <CheckBox Style="{StaticResource CheckBoxStyle}" Margin="13.588,27,2.912,36.5" IsChecked="True" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
             <CheckBox  VerticalAlignment="Center"  
                      HorizontalAlignment="Center" Margin="28.286,17.552,0,21.448" 
                      Width="38.058" Height="40" 

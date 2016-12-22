@@ -27,7 +27,7 @@ namespace Image_Viewer
 
         public MainWindow Win { get; set; }
 
-       
+
 
         private void ClickTrnsformImageLeft(object sender, RoutedEventArgs e)
         {
@@ -86,7 +86,11 @@ namespace Image_Viewer
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Win.HideControlMenu = false;
+            try
+            {
+                Win.HideControlMenu = false;
+            }
+            catch { }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -94,7 +98,7 @@ namespace Image_Viewer
             Win.HideControlMenu = true;
         }
 
-       
+
 
         private void CheckBox_CheckedSlideShow(object sender, RoutedEventArgs e)
         {

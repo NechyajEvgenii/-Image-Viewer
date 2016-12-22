@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Image_Viewer"
-             mc:Ignorable="d"  SizeChanged="UserControl_SizeChanged">
+             mc:Ignorable="d" >
     <UserControl.Resources>
       
         
@@ -227,8 +227,19 @@
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <CheckBox Style="{DynamicResource CheckBoxStyle}" HorizontalAlignment="Right" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"></CheckBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ProgressBar x:Name="ProgresBar1" Height="18"  Margin="0,0,0,0" Visibility="Collapsed"  Style="{StaticResource styleprogres}" IsIndeterminate="True">
+            </ProgressBar>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" Grid.Column="1" HorizontalAlignment="Right" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"></CheckBox>
 
+        </Grid>
+        
+       
+       
         <ScrollViewer x:Name="Scrol"  Grid.Row="1"  Template="{DynamicResource ScrollViewerControlTemplate}"  >
             <WrapPanel Name="WrapPan" Orientation="Horizontal" Background="Black" >
                 <!--<WrapPanel.ContextMenu>
