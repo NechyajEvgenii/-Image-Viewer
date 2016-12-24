@@ -101,6 +101,7 @@ namespace Image_Viewer
                         BitmapImage source = new BitmapImage();
                         source.BeginInit();
                         source.UriSource = new Uri(item);
+                        source.CacheOption = BitmapCacheOption.OnLoad;
                         source.DecodePixelHeight = 130;
                         source.DecodePixelWidth = 80;
                         source.EndInit();
@@ -124,8 +125,6 @@ namespace Image_Viewer
                         WrapPan.Children.Add(border);
                         Win.ListImagePath = listimage;
                     }, System.Windows.Threading.DispatcherPriority.Background);
-
-
                 }
 
                 Dispatcher.Invoke(() =>
@@ -147,15 +146,21 @@ namespace Image_Viewer
 
             var tmpIm = (tmp as System.Windows.Controls.Image).Source as BitmapImage;
 
-            var sourse= new BitmapImage(tmpIm.UriSource);
+            BitmapImage logo = new BitmapImage();
+            logo.BeginInit();
+            logo.CacheOption = BitmapCacheOption.OnLoad;
+            logo.UriSource = tmpIm.UriSource;
+            logo.EndInit();
+
+
             // Dispatcher.Invoke((Action)delegate
             //{
-            Win.ImageMain.Source = sourse;
+            Win.ImageMain.Source = logo;
          //  }, System.Windows.Threading.DispatcherPriority.Background);
 
-            Win.IndexElem = Win.ListImagePath.IndexOf(sourse.ToString());
+            Win.IndexElem = Win.ListImagePath.IndexOf(logo.ToString());
 
-            Win.CreateInfor(sourse.ToString().Remove(0, 8));
+            Win.CreateInfor(logo.ToString().Remove(0, 8));
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
