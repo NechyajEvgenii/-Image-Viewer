@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="3AA0F795-C513-43A5-8E66-D442BD2290CB" Name="Image Viewer" Language="1033" Version="1.0.0.0" Manufacturer="Evgenii Nechyai" UpgradeCode="C3859452-7A28-4ACD-8618-A3B248DB1550">
+    <Package InstallerVersion="200" Compressed="yes"  InstallScope="perMachine" />
+
+    <Media Id="1" Cabinet="demo.cab" EmbedCab="yes"></Media>
+      
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+          <Directory Id="INSTALLFOLDER" Name="Image Viewer" />
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="Image Viewer" />
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="MainExecutable" Guid="F2432856-19D6-4DE1-A769-1221C9824367">
+        <File Id="DemoApplicationExe" Name="$(var.Image Viewer.TargetFileName)" Source="$(var.Image Viewer.TargetPath)" DiskId="1" KeyPath="yes" >
+          <Shortcut Id="startmenuImageViewer" Directory="ProgramMenuDir" Name="ImageViewer" WorkingDirectory="INSTALLDIR" Icon="ProgramIcon.exe" IconIndex="0" Advertise="yes" />
+          <Shortcut Id="desktopImageViewer" Directory="DesktopFolder" Name="ImageViewer" WorkingDirectory="INSTALLDIR" Icon="ProgramIcon.exe" IconIndex="0" Advertise="yes" />
+        </File>
+      </Component>
+
+
+      <Component Id="MainExecutableConfig" Guid="69729B46-B598-410B-8BA2-59E509696C1E">
+        <File Id="ImageViewerExeConfig" Name="Image Viewer.exe.config" Source="$(var.Image Viewer.TargetDir)" DiskId="1" KeyPath="yes"></File>
+      </Component>
+
+      <Component Id="MainExecutablePdb" Guid="CDE21296-0B32-4B86-9A9C-12322F35F56F">
+        <File Id="ImageViewerPdb" Name="Image Viewer.pdb" Source="$(var.Image Viewer.TargetDir)"></File>
+      </Component>
+    </DirectoryRef>
+
+    <Icon Id="ProgramIcon.exe" SourceFile="$(var.Image Viewer.TargetPath)"/>
+
+    <DirectoryRef Id="ProgramMenuDir">
+      <Component Id="ProgramMenuDir" Guid="13D21414-B860-4CA0-83DC-970CB578ED75">
+        <Shortcut Id="UninstallProduct" Name="Delete" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" Description="Delete"></Shortcut>
+        <RemoveFolder Id="ProgramMenuDir" On="uninstall"></RemoveFolder>
+        <RegistryValue Root="HKCU" Key="Software\[Menufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes"> </RegistryValue>
+      </Component>
+
+
+    </DirectoryRef>
+
+
+    <Feature Id="Complete" Title="ImageViewer" Description="full installation" Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER" AllowAdvertise="no"  Absent="disallow">
+      <Feature Id="RComponents" Title="Necessary Components" Description="necessary components for work" Level="1" AllowAdvertise="no" Absent="disallow" InstallDefault="local">
+        <ComponentRef Id="MainExecutable"/>
+        <ComponentRef Id="MainExecutableConfig"/>
+        <ComponentRef Id="ProgramMenuDir"/>
+      </Feature>
+      <Feature Id="ExecutableSybols" Title="debugging symbols" Description="1" Level="2" Absent="allow" InstallDefault="followParent">
+        <ComponentRef Id="MainExecutablePdb"/>
+      </Feature>
+
+    </Feature>
+
+    <!--<Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"></Property>
+    <UIRef Id="WixUI_InstallDir"/>-->
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+<UIRef Id="WixUI_InstallDir" />
+    
+    <!--<UI Id="MyWixUI_Mondo">
+      <UIRef Id="WixUI_Mondo"/>
+      <UIRef Id="WixUI_ErrorProgressText"/>
+    </UI>
+    <WixVariable Id="WixUILicenseRtf" Overridable="yes" Value="License.rtf"/>
+    <WixVariable Id="WixUIBannerBmp" Value="73411112.bmp"/>
+    <WixVariable Id="WixUIDialogBmp" Value="1.bmp"/>-->
+  </Product>
+
+  <?define NetFx461MinRelease = 394254 ?>
+  <?define NetFx461WebLink = http://go.microsoft.com/fwlink/?LinkId=671728 ?>
+  <?define NetFx461RedistLink = http://go.microsoft.com/fwlink/?LinkId=671743 ?>
+  <?define NetFx461EulaLink = http://referencesource.microsoft.com/license.html ?>
+
+  <Fragment>
+    <PropertyRef Id="WIXNETFX4RELEASEINSTALLED" />
+    <Property Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" Secure="yes" />
+    <SetProperty Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" Value="1" After="AppSearch">
+      WIXNETFX4RELEASEINSTALLED >= "#$(var.NetFx461MinRelease)"
+    </SetProperty>
+
+  </Fragment>
+
+  <Fragment>
+    <util:RegistrySearchRef Id="NETFRAMEWORK45"/>
+    <WixVariable Id="WixMbaPrereqPackageId" Value="NetFx461Web" />
+    <WixVariable Id="WixMbaPrereqLicenseUrl" Value="$(var.NetFx461EulaLink)" Overridable="yes" />
+    <WixVariable Id="NetFx461WebDetectCondition" Value="NETFRAMEWORK45 &gt;= $(var.NetFx461MinRelease)" Overridable="yes" />
+    <WixVariable Id="NetFx461WebInstallCondition" Value="" Overridable="yes" />
+    <WixVariable Id="NetFx461WebPackageDirectory" Value="redist\" Overridable="yes" />
+
+    <PackageGroup Id="NetFx461Web">
+
+      <ExePackage
+
+          InstallCommand="/q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          RepairCommand="/q /norestart /repair /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          UninstallCommand="/uninstall /q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          PerMachine="yes"
+          DetectCondition="!(wix.NetFx461WebDetectCondition)"
+          InstallCondition="!(wix.NetFx461WebInstallCondition)"
+          Id="NetFx461Web"
+          Vital="yes"
+          Permanent="yes"
+          Protocol="netfx4"
+          DownloadUrl="$(var.NetFx461WebLink)"
+          LogPathVariable="NetFx461FullLog"
+          Compressed="no"
+
+          Name="!(wix.NetFx461WebPackageDirectory)NDP461-KB3102438-Web.exe">
+
+        <RemotePayload
+          CertificatePublicKey="52868DFCA6E3AF2632389E6C1EE7D0468D3797D0"
+          CertificateThumbprint="3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
+          Description="Microsoft .NET Framework 4.6.1 Setup"
+          Hash="EE88B05232F43B517D4A368F7EE5065CDE7F67FA"
+          ProductName="Microsoft .NET Framework 4.6.1"
+          Size="1424328"
+          Version="4.6.1055.0" />
+      </ExePackage>
+    </PackageGroup>
+  </Fragment>
+
+  <Fragment>
+
+    <util:RegistrySearchRef Id="NETFRAMEWORK45"/>
+    <WixVariable Id="WixMbaPrereqPackageId" Value="NetFx461Redist" />
+    <WixVariable Id="WixMbaPrereqLicenseUrl" Value="$(var.NetFx461EulaLink)" Overridable="yes" />
+    <WixVariable Id="NetFx461RedistDetectCondition" Value="NETFRAMEWORK45 &gt;= $(var.NetFx461MinRelease)" Overridable="yes" />
+    <WixVariable Id="NetFx461RedistInstallCondition" Value="" Overridable="yes" />
+    <WixVariable Id="NetFx461RedistPackageDirectory" Value="redist\" Overridable="yes" />
+    <PackageGroup Id="NetFx461Redist">
+      <ExePackage
+          InstallCommand="/q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          RepairCommand="/q /norestart /repair /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          UninstallCommand="/uninstall /q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
+          PerMachine="yes"
+          DetectCondition="!(wix.NetFx461RedistDetectCondition)"
+          InstallCondition="!(wix.NetFx461RedistInstallCondition)"
+          Id="NetFx461Redist"
+          Vital="yes"
+          Permanent="yes"
+          Protocol="netfx4"
+          DownloadUrl="$(var.NetFx461RedistLink)"
+          LogPathVariable="NetFx461FullLog"
+          Compressed="no"
+
+          Name="!(wix.NetFx461RedistPackageDirectory)NDP461-KB3102436-x86-x64-AllOS-ENU.exe">
+
+        <RemotePayload
+          CertificatePublicKey="52868DFCA6E3AF2632389E6C1EE7D0468D3797D0"
+          CertificateThumbprint="3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
+          Description="Microsoft .NET Framework 4.6.1 Setup"
+          Hash="83D048D171FF44A3CAD9B422137656F585295866"
+          ProductName="Microsoft .NET Framework 4.6.1"
+          Size="67681000"
+          Version="4.6.1055.0" />
+      </ExePackage>
+    </PackageGroup>
+  </Fragment>
+
+
+</Wix>

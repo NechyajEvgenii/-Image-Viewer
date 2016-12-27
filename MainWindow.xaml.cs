@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Image_Viewer
     {
         public MainWindow()
         {
-
+            AppDomain.CurrentDomain.AssemblyResolve += AppDomain_AssemblyResolve;
             InitializeComponent();
             HideControlInform = true;
             HideControlLibrary = true;
@@ -38,13 +39,32 @@ namespace Image_Viewer
             LibraryImages.Win = this;
             ControlM.Win = this;
             ImageInf.Win = this;
-
+            AutoSave = false;
         }
 
         public bool HideControlInform { get; set; }
         public bool HideControlLibrary { get; set; }
         public bool HideControlMenu { get; set; }
+        public bool AutoSave { get; set; }
 
+        private static Assembly AppDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.Contains("EXIFextractor"))
+            {
+                Console.WriteLine("Resolving assembly: {0}", args.Name);
+                MessageBox.Show("1");
+                // Загрузка запакованной сборки из ресурсов, ее распаковка и подстановка
+                using (var resource = new MemoryStream(Image_Viewer.Properties.Resources.EXIFextractor))
+                using (var reader = new BinaryReader(resource))
+                {
+                    var one_megabyte = 1024 * 1024;
+                    var buffer = reader.ReadBytes(one_megabyte);
+                    return Assembly.Load(buffer);
+                }
+            }
+            MessageBox.Show("2");
+            return null;
+        }
 
         private void ShowControlLibrary(object sender, MouseEventArgs e)
         {
@@ -110,19 +130,15 @@ namespace Image_Viewer
             ToScale();
             TransformImage.Angle = 0;
 
-
-
             Bitmap bmp = new Bitmap(path);
-
-
 
             EXIFextractor exit = new EXIFextractor(ref bmp, "\n");
 
             ImageInf.TextPath.Text = path;
 
-            string s = path.Remove(0, path.LastIndexOf("\\") + 1);
-            ImageInf.TextName.Text = s.Remove(s.IndexOf("."));
-            ImageInf.TextFormat.Text = path.Remove(0, path.LastIndexOf(".") + 1);
+            //string s = path.Remove(0, path.LastIndexOf("\\") + 1);
+            ImageInf.TextName.Text = System.IO.Path.GetFileNameWithoutExtension(path);  //s.Remove(s.IndexOf("."));
+            ImageInf.TextFormat.Text = System.IO.Path.GetExtension(path);   //  path.Remove(0, path.LastIndexOf(".") + 1);
 
             ImageInf.TextImageExtension.Text = $"{bmp.Width}x{bmp.Height}";
 
@@ -142,7 +158,7 @@ namespace Image_Viewer
 
             exit = null;
             bmp = null;
-            GC.Collect();
+         //   GC.Collect();
         }
 
         private void ShowControlInform(object sender, MouseEventArgs e)
@@ -209,13 +225,15 @@ namespace Image_Viewer
         {
             ToScale();
             TransformImage.Angle -= 90;
+            if(AutoSave)
             Save();
         }
         public void TransformImageRight()
         {
             ToScale();
             TransformImage.Angle += 90;
-            Save();
+            if (AutoSave)
+                Save();
         }
 
         public void FlipVertically()
@@ -282,11 +300,10 @@ namespace Image_Viewer
             try
             {
                 IndexElem--;
-                if (IndexElem <= 0)
+                if (IndexElem <= 0 )
                 {
-                    IndexElem = ListImagePath.Count - 1;
+                    IndexElem = ListImagePath.Count;
                 }
-               
                 BitmapImage b = new BitmapImage();
                 b.BeginInit();
                 b.CacheOption = BitmapCacheOption.OnLoad;
@@ -303,7 +320,6 @@ namespace Image_Viewer
                     Duration = TimeSpan.FromSeconds(0.8),
                 };
                 ImageMain.BeginAnimation(OpacityProperty, animation);
-
             }
             catch { }
         }
@@ -312,16 +328,22 @@ namespace Image_Viewer
         private void Elapsed(object sender)
         {
 
-
             try
             {
-                IndexElem--;
-                if (IndexElem <= 0)
+                IndexElem++;
+                if (IndexElem >= ListImagePath.Count)
                 {
-                    IndexElem = ListImagePath.Count;
+                    IndexElem = 0;
                 }
-                ImageMain.Source = new BitmapImage(new Uri(ListImagePath[IndexElem]));
+                BitmapImage b = new BitmapImage();
+                b.BeginInit();
+                b.CacheOption = BitmapCacheOption.OnLoad;
+                b.UriSource = new Uri(ListImagePath[IndexElem]);
+                b.EndInit();
+
+                ImageMain.Source = b;
                 CreateInfor(ListImagePath[IndexElem]);
+
 
                 DoubleAnimation animation = new DoubleAnimation()
                 {
@@ -337,8 +359,6 @@ namespace Image_Viewer
 
         public void Next()
         {
-
-          
             try
             {
                 IndexElem++;
@@ -396,20 +416,27 @@ namespace Image_Viewer
 
         private void Save()
         {
-            var sours = ImageMain.Source;
-            var str = ImageMain.Source.ToString();
-            var path = str.Remove(0, str.IndexOf("///") + 3);
-            var angle = Int32.Parse(TransformImage.Angle.ToString());
-
-            BitmapSource img = (BitmapSource)(sours);
-            CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(angle));
-            TiffBitmapEncoder encoder = new TiffBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(tb));
-            using (FileStream file = File.OpenWrite(path))
+            Task.Run(() =>
             {
-                encoder.Save(file);
-            }
+                Dispatcher.Invoke(() =>
+                {
+                    var sours = ImageMain.Source;
+                    var str = ImageMain.Source.ToString();
+                    var path = str.Remove(0, str.IndexOf("///") + 3);
+                    var angle = Int32.Parse(TransformImage.Angle.ToString());
+
+                    BitmapSource img = (BitmapSource)(sours);
+                    CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                    TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(angle));
+                    TiffBitmapEncoder encoder = new TiffBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(tb));
+                    using (FileStream file = File.OpenWrite(path))
+                    {
+                        encoder.Save(file);
+                    }
+
+                },System.Windows.Threading.DispatcherPriority.Background);
+            });
         }
 
     }

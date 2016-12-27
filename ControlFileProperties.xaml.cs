@@ -38,19 +38,6 @@ namespace Image_Viewer
             Win.HideControlInform = true;
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (Width >= 240)
-            {
-                grid.Opacity = 1;
-            }
-
-            if (Width <= 180)
-            {
-                grid.Opacity = 0;
-            }
-        }
-
         //public string  TextFormatC  {  set{ TextFormat.Text = value; } }
         //public string TextImageExtensionC { set{ TextImageExtension.Text = value; } }            
         //public string TextPathC { set{ TextPath.Text = value; } }            

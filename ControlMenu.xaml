@@ -625,7 +625,7 @@
                      Margin="0,0,10,0"
                       Width="30" Height="27.5" 
                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                      ToolTip="Autosave"  />
+                      ToolTip="Autosave"  Checked="CheckAutoSave"  Unchecked="UnCheckAutoSave" />
 
         </Grid>
 

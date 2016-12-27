@@ -109,5 +109,15 @@ namespace Image_Viewer
         {
             Win.SlideShowStop();
         }
+
+        private void CheckAutoSave(object sender, RoutedEventArgs e)
+        {
+            Win.AutoSave = true;
+        }
+
+        private void UnCheckAutoSave(object sender, RoutedEventArgs e)
+        {
+            Win.AutoSave = false;
+        }
     }
 }

@@ -27,12 +27,12 @@
             <Setter Property="Foreground" Value="Gray"></Setter>
             <Setter Property="TextAlignment" Value="Right"></Setter>
         </Style>
-      
+
     </UserControl.Resources>
 
-    <Grid x:Name="grid" >
+    <Grid  >
         <Border Margin="0" Background="Black"  Opacity="0.5"/>
-        <Grid>
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="15" MaxHeight="15"></RowDefinition>
                 <RowDefinition Height="10*" MaxHeight="15"></RowDefinition>
@@ -48,7 +48,7 @@
 
             <CheckBox Style="{DynamicResource CheckBoxStyle}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
 
-            <Grid VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" >
+            <Grid VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"  x:Name="gridP" Visibility="Visible">
                 <Grid.RowDefinitions>
 
                     <RowDefinition Height="35"></RowDefinition>
