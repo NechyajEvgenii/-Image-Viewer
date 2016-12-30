@@ -84,57 +84,79 @@ namespace Image_Viewer
 
             listimage = new List<string>();
 
+            IEnumerable<string> massImage = null;
             new Thread(() =>
+{
+
+    try
+    {
+        massImage = Directory.GetFiles(pathfolfer, "*.*", SearchOption.TopDirectoryOnly)
+               .Where(s => s.ToLower().EndsWith(".jpg")
+               || s.ToLower().EndsWith(".bmp")
+               || s.ToLower().EndsWith(".png"));
+
+        if (massImage == null)
+        {
+            massImage = Directory.GetFiles(System.IO.Path.GetDirectoryName(pathfolfer), "*.*", SearchOption.TopDirectoryOnly)
+              .Where(s => s.ToLower().EndsWith(".jpg")
+              || s.ToLower().EndsWith(".bmp")
+              || s.ToLower().EndsWith(".png"));
+        }
+    }
+    catch { }
+    if (massImage != null)
+        foreach (var item in massImage)
+        {
+
+            Dispatcher.Invoke(() =>
+        {
+            try
             {
-                var massImage = Directory.GetFiles(pathfolfer, "*.*", SearchOption.TopDirectoryOnly)
-                        .Where(s => s.ToLower().EndsWith(".jpg")
-                        || s.ToLower().EndsWith(".bmp")
-                        || s.ToLower().EndsWith(".png"));
+                listimage.Add(item);
 
+                BitmapImage source = new BitmapImage();
+                source.BeginInit();
+                source.UriSource = new Uri(item);
+                source.CacheOption = BitmapCacheOption.OnLoad;
+                source.DecodePixelHeight = 130;
+                source.DecodePixelWidth = 80;
+                source.EndInit();
 
-                foreach (var item in massImage)
+                var border = new Border()
                 {
-                    Dispatcher.Invoke(() =>
+                    Width = 70,
+                    Height = 50,
+                    BorderThickness = new Thickness(0, 0, 0, 0),
+                    BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
+                    Child = new System.Windows.Controls.Image()
                     {
-                        listimage.Add(item);
+                        Width = 65,
+                        Height = 40,
+                        Stretch = Stretch.Fill,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Source = source
+                    }
 
-                        BitmapImage source = new BitmapImage();
-                        source.BeginInit();
-                        source.UriSource = new Uri(item);
-                        source.CacheOption = BitmapCacheOption.OnLoad;
-                        source.DecodePixelHeight = 130;
-                        source.DecodePixelWidth = 80;
-                        source.EndInit();
+                };
+                WrapPan.Children.Add(border);
+                Win.ListImagePath = listimage;
 
-                        var border = new Border()
-                        {
-                            Width = 70,
-                            Height = 50,
-                            BorderThickness = new Thickness(0, 0, 0, 0),
-                            BorderBrush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#dadada"),
-                            Child = new System.Windows.Controls.Image()
-                            {
-                                Width = 65,
-                                Height = 40,
-                                Stretch = Stretch.Fill,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Source = source
-                            }
-                        };
-                        WrapPan.Children.Add(border);
-                        Win.ListImagePath = listimage;
-                    }, System.Windows.Threading.DispatcherPriority.Background);
-                }
+            }
+            catch { }
+        }, System.Windows.Threading.DispatcherPriority.Background);
+        }
 
-                Dispatcher.Invoke(() =>
-                {
-                    if (pathfile != null)
-                        Win.IndexElem = listimage.IndexOf(pathfile);
-                    ProgresBar1.Visibility = Visibility.Collapsed;
-                }, System.Windows.Threading.DispatcherPriority.Background);
+    Dispatcher.Invoke(() =>
+        {
+            if (pathfile != null)
+                Win.IndexElem = listimage.IndexOf(pathfile);
+            ProgresBar1.Visibility = Visibility.Collapsed;
+        }, System.Windows.Threading.DispatcherPriority.Background);
 
-            }).Start();
+
+
+}).Start();
         }
 
 
@@ -156,7 +178,7 @@ namespace Image_Viewer
             // Dispatcher.Invoke((Action)delegate
             //{
             Win.ImageMain.Source = logo;
-         //  }, System.Windows.Threading.DispatcherPriority.Background);
+            //  }, System.Windows.Threading.DispatcherPriority.Background);
 
             Win.IndexElem = Win.ListImagePath.IndexOf(logo.ToString());
 

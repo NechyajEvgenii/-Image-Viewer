@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx ="http://schemas.microsoft.com/wix/NetFxExtension">
+  <!--<Bundle Version="1.0" UpgradeCode="628253D9-F5FE-4197-B941-D8CBD31D0C3C">
+    <PayloadGroup Id="NetFx452RedistPayload">
+      <Payload Name="redist\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
+               SourceFile="X:\path\to\redists\in\repo\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"/>
+    </PayloadGroup>
+    <Chain>
+      <PackageGroupRef Id="NetFx45Web"/>
+      <MsiPackage Id="MyApplication" SourceFile="$(var.MyApplicationSetup.TargetPath)"/>
+    </Chain>
+  </Bundle>-->
+
   <Product Id="3AA0F795-C513-43A5-8E66-D442BD2290CB" Name="Image Viewer" Language="1033" Version="1.0.0.0" Manufacturer="Evgenii Nechyai" UpgradeCode="C3859452-7A28-4ACD-8618-A3B248DB1550">
     <Package InstallerVersion="200" Compressed="yes"  InstallScope="perMachine" />
 
+    <PropertyRef Id = "NETFRAMEWORK45" />
+
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+
+
     <Media Id="1" Cabinet="demo.cab" EmbedCab="yes"></Media>
-      
+
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-          <Directory Id="INSTALLFOLDER" Name="Image Viewer" />
+        <Directory Id="INSTALLFOLDER" Name="Image Viewer" />
       </Directory>
 
       <Directory Id="ProgramMenuFolder" Name="Programs">
@@ -64,8 +82,8 @@
     <UIRef Id="WixUI_InstallDir"/>-->
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-<UIRef Id="WixUI_InstallDir" />
-    
+    <UIRef Id="WixUI_InstallDir" />
+
     <!--<UI Id="MyWixUI_Mondo">
       <UIRef Id="WixUI_Mondo"/>
       <UIRef Id="WixUI_ErrorProgressText"/>
@@ -73,99 +91,10 @@
     <WixVariable Id="WixUILicenseRtf" Overridable="yes" Value="License.rtf"/>
     <WixVariable Id="WixUIBannerBmp" Value="73411112.bmp"/>
     <WixVariable Id="WixUIDialogBmp" Value="1.bmp"/>-->
+
+
+
   </Product>
-
-  <?define NetFx461MinRelease = 394254 ?>
-  <?define NetFx461WebLink = http://go.microsoft.com/fwlink/?LinkId=671728 ?>
-  <?define NetFx461RedistLink = http://go.microsoft.com/fwlink/?LinkId=671743 ?>
-  <?define NetFx461EulaLink = http://referencesource.microsoft.com/license.html ?>
-
-  <Fragment>
-    <PropertyRef Id="WIXNETFX4RELEASEINSTALLED" />
-    <Property Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" Secure="yes" />
-    <SetProperty Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" Value="1" After="AppSearch">
-      WIXNETFX4RELEASEINSTALLED >= "#$(var.NetFx461MinRelease)"
-    </SetProperty>
-
-  </Fragment>
-
-  <Fragment>
-    <util:RegistrySearchRef Id="NETFRAMEWORK45"/>
-    <WixVariable Id="WixMbaPrereqPackageId" Value="NetFx461Web" />
-    <WixVariable Id="WixMbaPrereqLicenseUrl" Value="$(var.NetFx461EulaLink)" Overridable="yes" />
-    <WixVariable Id="NetFx461WebDetectCondition" Value="NETFRAMEWORK45 &gt;= $(var.NetFx461MinRelease)" Overridable="yes" />
-    <WixVariable Id="NetFx461WebInstallCondition" Value="" Overridable="yes" />
-    <WixVariable Id="NetFx461WebPackageDirectory" Value="redist\" Overridable="yes" />
-
-    <PackageGroup Id="NetFx461Web">
-
-      <ExePackage
-
-          InstallCommand="/q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          RepairCommand="/q /norestart /repair /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          UninstallCommand="/uninstall /q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          PerMachine="yes"
-          DetectCondition="!(wix.NetFx461WebDetectCondition)"
-          InstallCondition="!(wix.NetFx461WebInstallCondition)"
-          Id="NetFx461Web"
-          Vital="yes"
-          Permanent="yes"
-          Protocol="netfx4"
-          DownloadUrl="$(var.NetFx461WebLink)"
-          LogPathVariable="NetFx461FullLog"
-          Compressed="no"
-
-          Name="!(wix.NetFx461WebPackageDirectory)NDP461-KB3102438-Web.exe">
-
-        <RemotePayload
-          CertificatePublicKey="52868DFCA6E3AF2632389E6C1EE7D0468D3797D0"
-          CertificateThumbprint="3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
-          Description="Microsoft .NET Framework 4.6.1 Setup"
-          Hash="EE88B05232F43B517D4A368F7EE5065CDE7F67FA"
-          ProductName="Microsoft .NET Framework 4.6.1"
-          Size="1424328"
-          Version="4.6.1055.0" />
-      </ExePackage>
-    </PackageGroup>
-  </Fragment>
-
-  <Fragment>
-
-    <util:RegistrySearchRef Id="NETFRAMEWORK45"/>
-    <WixVariable Id="WixMbaPrereqPackageId" Value="NetFx461Redist" />
-    <WixVariable Id="WixMbaPrereqLicenseUrl" Value="$(var.NetFx461EulaLink)" Overridable="yes" />
-    <WixVariable Id="NetFx461RedistDetectCondition" Value="NETFRAMEWORK45 &gt;= $(var.NetFx461MinRelease)" Overridable="yes" />
-    <WixVariable Id="NetFx461RedistInstallCondition" Value="" Overridable="yes" />
-    <WixVariable Id="NetFx461RedistPackageDirectory" Value="redist\" Overridable="yes" />
-    <PackageGroup Id="NetFx461Redist">
-      <ExePackage
-          InstallCommand="/q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          RepairCommand="/q /norestart /repair /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          UninstallCommand="/uninstall /q /norestart /ChainingPackage &quot;[WixBundleName]&quot; /log &quot;[NetFx461FullLog].html&quot;"
-          PerMachine="yes"
-          DetectCondition="!(wix.NetFx461RedistDetectCondition)"
-          InstallCondition="!(wix.NetFx461RedistInstallCondition)"
-          Id="NetFx461Redist"
-          Vital="yes"
-          Permanent="yes"
-          Protocol="netfx4"
-          DownloadUrl="$(var.NetFx461RedistLink)"
-          LogPathVariable="NetFx461FullLog"
-          Compressed="no"
-
-          Name="!(wix.NetFx461RedistPackageDirectory)NDP461-KB3102436-x86-x64-AllOS-ENU.exe">
-
-        <RemotePayload
-          CertificatePublicKey="52868DFCA6E3AF2632389E6C1EE7D0468D3797D0"
-          CertificateThumbprint="3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC"
-          Description="Microsoft .NET Framework 4.6.1 Setup"
-          Hash="83D048D171FF44A3CAD9B422137656F585295866"
-          ProductName="Microsoft .NET Framework 4.6.1"
-          Size="67681000"
-          Version="4.6.1055.0" />
-      </ExePackage>
-    </PackageGroup>
-  </Fragment>
 
 
 </Wix>

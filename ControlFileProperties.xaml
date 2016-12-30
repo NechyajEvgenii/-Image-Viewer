@@ -46,7 +46,9 @@
                 <ColumnDefinition Width="10"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <CheckBox Style="{DynamicResource CheckBoxStyle}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"></CheckBox>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}" 
+                      Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"
+                      ToolTip="Pin information"></CheckBox>
 
             <Grid VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"  x:Name="gridP" Visibility="Visible">
                 <Grid.RowDefinitions>

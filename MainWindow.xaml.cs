@@ -52,7 +52,6 @@ namespace Image_Viewer
             if (args.Name.Contains("EXIFextractor"))
             {
                 Console.WriteLine("Resolving assembly: {0}", args.Name);
-                MessageBox.Show("1");
                 // Загрузка запакованной сборки из ресурсов, ее распаковка и подстановка
                 using (var resource = new MemoryStream(Image_Viewer.Properties.Resources.EXIFextractor))
                 using (var reader = new BinaryReader(resource))
@@ -62,7 +61,6 @@ namespace Image_Viewer
                     return Assembly.Load(buffer);
                 }
             }
-            MessageBox.Show("2");
             return null;
         }
 
@@ -100,7 +98,6 @@ namespace Image_Viewer
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 try
                 {
-
                     BitmapImage b = new BitmapImage();
                     b.BeginInit();
                     b.CacheOption = BitmapCacheOption.OnLoad;
@@ -111,7 +108,8 @@ namespace Image_Viewer
                     OriginalHeight = b.Height;
                     OriginalWidth = b.Width;
                     CreateInfor(files[0]);
-                    LibraryImages.CreatImageLibrary(files[0].Remove(files[0].LastIndexOf("\\")), files[0]);
+                    
+                    LibraryImages.CreatImageLibrary(System.IO.Path.GetDirectoryName(files[0]), files[0]);
                 }
                 catch
                 {
@@ -123,6 +121,8 @@ namespace Image_Viewer
 
         public int IndexElem { get; set; }
         public List<string> ListImagePath { get; set; }
+
+
 
 
         public void CreateInfor(string path)
@@ -158,7 +158,8 @@ namespace Image_Viewer
 
             exit = null;
             bmp = null;
-         //   GC.Collect();
+        //    GC.Collect();
+
         }
 
         private void ShowControlInform(object sender, MouseEventArgs e)
@@ -225,13 +226,20 @@ namespace Image_Viewer
         {
             ToScale();
             TransformImage.Angle -= 90;
-            if(AutoSave)
-            Save();
+             angleTrasform = -90;
+
+            if (AutoSave)
+                Save();
         }
+
+
+        int angleTrasform;
+
         public void TransformImageRight()
         {
             ToScale();
             TransformImage.Angle += 90;
+            angleTrasform = 90;
             if (AutoSave)
                 Save();
         }
@@ -300,7 +308,7 @@ namespace Image_Viewer
             try
             {
                 IndexElem--;
-                if (IndexElem <= 0 )
+                if (IndexElem <= 0)
                 {
                     IndexElem = ListImagePath.Count;
                 }
@@ -416,27 +424,45 @@ namespace Image_Viewer
 
         private void Save()
         {
-            Task.Run(() =>
-            {
                 Dispatcher.Invoke(() =>
                 {
                     var sours = ImageMain.Source;
                     var str = ImageMain.Source.ToString();
                     var path = str.Remove(0, str.IndexOf("///") + 3);
-                    var angle = Int32.Parse(TransformImage.Angle.ToString());
 
-                    BitmapSource img = (BitmapSource)(sours);
-                    CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-                    TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(angle));
-                    TiffBitmapEncoder encoder = new TiffBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create(tb));
+                    BitmapEncoder encoder = null;
+                    BitmapDecoder decoder = null;
+                    FileStream Foto = File.Open(path, FileMode.Open, FileAccess.Read); // открыли файл по адресу s для чтения
+
+                    switch (System.IO.Path.GetExtension(path).ToLower())
+                    {
+                        case ".png":
+                            encoder = new PngBitmapEncoder();
+                            decoder = PngBitmapDecoder.Create(Foto, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                            break;
+                        case ".jpg":
+                            encoder = new JpegBitmapEncoder();
+                            decoder = JpegBitmapDecoder.Create(Foto, BitmapCreateOptions.None, BitmapCacheOption.OnLoad); //"распаковали" снимок и создали объект decoder
+                            break;
+                        case ".bmp":
+                            encoder = new BmpBitmapEncoder();
+                            decoder = BmpBitmapDecoder.Create(Foto, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                            break;
+                    }
+
+                    BitmapMetadata TmpImgEXIF =  (BitmapMetadata)decoder.Frames[0].Metadata.Clone(); //считали и сохранили метаданные
+                    Foto.Close();
+                    TransformedBitmap tb = new TransformedBitmap(decoder.Frames[0], new RotateTransform(0));
+                     tb = new TransformedBitmap(decoder.Frames[0], new RotateTransform(angleTrasform));
+
+                    encoder.Frames.Add(BitmapFrame.Create(tb, decoder.Frames[0].Thumbnail,
+                        TmpImgEXIF, decoder.Frames[0].ColorContexts));
+
                     using (FileStream file = File.OpenWrite(path))
                     {
                         encoder.Save(file);
                     }
-
                 },System.Windows.Threading.DispatcherPriority.Background);
-            });
         }
 
     }

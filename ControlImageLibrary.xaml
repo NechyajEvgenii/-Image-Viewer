@@ -234,7 +234,10 @@
             </Grid.ColumnDefinitions>
             <ProgressBar x:Name="ProgresBar1" Height="18"  Margin="0,0,0,0" Visibility="Collapsed"  Style="{StaticResource styleprogres}" IsIndeterminate="True">
             </ProgressBar>
-            <CheckBox Style="{DynamicResource CheckBoxStyle}" Grid.Column="1" HorizontalAlignment="Right" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"></CheckBox>
+            <CheckBox Style="{DynamicResource CheckBoxStyle}"  Grid.Column="1" HorizontalAlignment="Right" 
+                      Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"
+                      ToolTip="Pin gallery">
+            </CheckBox>
 
         </Grid>
         
